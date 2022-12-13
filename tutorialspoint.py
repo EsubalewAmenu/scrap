@@ -24,6 +24,11 @@ base_url="https://www.tutorialspoint.com"
 
 endpoint = "/python/python_variables.htm"
 
+
+def check_classes_ids(tag):
+    # print ("aaaaaaaaaaaaaaaaa ", tag.get('class') )
+    return (tag.name == 'div' and (tag.get('class') in [['clear'], ['clearer']] )) or (tag.name == 'div' and tag.get('id') in ['google-top-ads','load']) or tag.name == 'style'
+
 def scrap_lesson(endpoint):
     source=requests.get(base_url+endpoint,
         # proxies={'http': '222.255.169.74:8080'},
@@ -32,13 +37,18 @@ def scrap_lesson(endpoint):
 
     lesson=soup.find("div",id='mainContent')
 
-    jump_class_id = ['google-top-ads','top-ad-heading','mui-container-fluid','load','clear','clearer','bottom_navigation','google-bottom-ads']
+    for lesson_contents in  lesson.find_all(check_classes_ids):
+        lesson_contents.decompose()
 
-    lesson_contents=lesson.find_all(['h1', 'h2', 'h3','hr','br','p','pre','ul','blockquote'])
-    print(len(lesson_contents))
+    print(lesson)
+    
+    # for lesson_contents in lesson.find_all("style"):
+    #     lesson_contents.decompose()
+    # print(lesson)
+    # print(len(lesson_contents))
 
-    for content in lesson_contents:
-        print(content)
+    # for content in lesson_contents:
+    #     print(content)
         # ids = []
         # classes = []
 
