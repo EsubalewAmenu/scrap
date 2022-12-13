@@ -26,8 +26,7 @@ endpoint = "/python/python_variables.htm"
 
 
 def check_classes_ids(tag):
-    # print ("aaaaaaaaaaaaaaaaa ", tag.get('class') )
-    return (tag.name == 'div' and (tag.get('class') in [['clear'], ['clearer']] )) or (tag.name == 'div' and tag.get('id') in ['google-top-ads','load']) or tag.name == 'style'
+    return (tag.name == 'div' and (tag.get('class') in [['clear'], ["mui-container-fluid", "button-borders"], ['clearer']] or tag.get('id') in ['google-top-ads','load', "google-bottom-ads",'bottom_navigation'])) or tag.name == 'style'
 
 def scrap_lesson(endpoint):
     source=requests.get(base_url+endpoint,
@@ -40,36 +39,5 @@ def scrap_lesson(endpoint):
     for lesson_contents in  lesson.find_all(check_classes_ids):
         lesson_contents.decompose()
 
-    print(lesson)
-    
-    # for lesson_contents in lesson.find_all("style"):
-    #     lesson_contents.decompose()
-    # print(lesson)
-    # print(len(lesson_contents))
-
-    # for content in lesson_contents:
-    #     print(content)
-        # ids = []
-        # classes = []
-
-        # try:
-        #     ids = content["id"]
-        # except:
-        #     pass
-
-        # try:
-        #     classes = content['class']
-        # except:
-        #     pass
-
-        # # check_ids = ids in jump_class_id 
-        # # check_clases = any(item in jump_class_id for item in classes)
-
-        # # if check_ids is True or check_clases is True:
-        # print("jump", ids,classes)
-        #     pass
-        # else:
-        #     print("this will be added", ids,classes)
-
-
+    print(lesson) 
 scrap_lesson(endpoint)
