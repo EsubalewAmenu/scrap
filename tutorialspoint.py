@@ -4,8 +4,8 @@ import time
 
 
 # python, java
-course_name = "Java"
-tutorial = "java"
+course_name = "Python"
+tutorial = "python"
 base_url="https://www.tutorialspoint.com"
 
 
@@ -50,50 +50,47 @@ def scrap_content(endpoint):
     # return [content for content in contents.children]
 
 sections = {
-'Tutorial': [
-{'name': 'Home', 'url': '/java/index.htm' },
-{'name': 'Overview', 'url': '/java/java_overview.htm' },
-{'name': 'Environment Setup', 'url': '/java/java_environment_setup.htm' },
-{'name': 'Basic Syntax', 'url': '/java/java_basic_syntax.htm' },
-{'name': 'Object & Classes', 'url': '/java/java_object_classes.htm' },
-{'name': 'Constructors', 'url': '/java/java_constructors.htm' },
-{'name': 'Basic Datatypes', 'url': '/java/java_basic_datatypes.htm' },
-{'name': 'Variable Types', 'url': '/java/java_variable_types.htm' },
-{'name': 'Modifier Types', 'url': '/java/java_modifier_types.htm' },
-{'name': 'Basic Operators', 'url': '/java/java_basic_operators.htm' },
-{'name': 'Loop Control', 'url': '/java/java_loop_control.htm' },
-{'name': 'Decision Making', 'url': '/java/java_decision_making.htm' },
-{'name': 'Numbers', 'url': '/java/java_numbers.htm' },
-{'name': 'Characters', 'url': '/java/java_characters.htm' },
-{'name': 'Strings', 'url': '/java/java_strings.htm' },
-{'name': 'Arrays', 'url': '/java/java_arrays.htm' },
-{'name': 'Date & Time', 'url': '/java/java_date_time.htm' },
-{'name': 'Regular Expressions', 'url': '/java/java_regular_expressions.htm' },
-{'name': 'Methods', 'url': '/java/java_methods.htm' },
-{'name': 'Files and I/O', 'url': '/java/java_files_io.htm' },
-{'name': 'Exceptions', 'url': '/java/java_exceptions.htm' },
-{'name': 'Inner classes', 'url': '/java/java_innerclasses.htm' },
-],
-'Object Oriented': [
-{'name': 'Inheritance', 'url': '/java/java_inheritance.htm' },
-{'name': 'Overriding', 'url': '/java/java_overriding.htm' },
-{'name': 'Polymorphism', 'url': '/java/java_polymorphism.htm' },
-{'name': 'Abstraction', 'url': '/java/java_abstraction.htm' },
-{'name': 'Encapsulation', 'url': '/java/java_encapsulation.htm' },
-{'name': 'Interfaces', 'url': '/java/java_interfaces.htm' },
-{'name': 'Packages', 'url': '/java/java_packages.htm' },
-],
-'Advanced': [
-{'name': 'Data Structures', 'url': '/java/java_data_structures.htm' },
-{'name': 'Collections', 'url': '/java/java_collections.htm' },
-{'name': 'Generics', 'url': '/java/java_generics.htm' },
-{'name': 'Serialization', 'url': '/java/java_serialization.htm' },
-{'name': 'Networking', 'url': '/java/java_networking.htm' },
-{'name': 'Sending Email', 'url': '/java/java_sending_email.htm' },
-{'name': 'Multithreading', 'url': '/java/java_multithreading.htm' },
-{'name': 'Applet Basics', 'url': '/java/java_applet_basics.htm' },
-{'name': 'Documentation', 'url': '/java/java_documentation.htm' },
-]
+    'Basic Tutorial': [
+        {'name': 'Home', 'url': '/python/index.htm' },
+        {'name': 'Overview', 'url': '/python/python_overview.htm' },
+        {'name': 'Environment Setup', 'url': '/python/python_environment.htm' },
+        {'name': 'Basic Syntax', 'url': '/python/python_basic_syntax.htm' },
+        {'name': 'Comments', 'url': '/python/python_comments.htm' },
+        {'name': 'Variables', 'url': '/python/python_variables.htm' },
+        {'name': 'Data Types', 'url': '/python/python_data_types.htm' },
+        {'name': 'Operators', 'url': '/python/python_operators.htm' },
+        {'name': 'Decision Making', 'url': '/python/python_decision_making.htm' },
+        {'name': 'Loops', 'url': '/python/python_loops.htm' },
+        {'name': 'Numbers', 'url': '/python/python_numbers.htm' },
+        {'name': 'Strings', 'url': '/python/python_strings.htm' },
+        {'name': 'Lists', 'url': '/python/python_lists.htm' },
+        {'name': 'Tuples', 'url': '/python/python_tuples.htm' },
+        {'name': 'Dictionary', 'url': '/python/python_dictionary.htm' },
+        {'name': 'Date & Time', 'url': '/python/python_date_time.htm' },
+        {'name': 'Functions', 'url': '/python/python_functions.htm' },
+        {'name': 'Modules', 'url': '/python/python_modules.htm' },
+        {'name': 'Files I/O', 'url': '/python/python_files_io.htm' },
+        {'name': 'Exceptions', 'url': '/python/python_exceptions.htm' },
+    ],
+    'Advanced Tutorial': [
+        {'name': 'Classes/Objects', 'url': '/python/python_classes_objects.htm' },
+        {'name': 'Reg Expressions', 'url': '/python/python_reg_expressions.htm' },
+        {'name': 'CGI Programming', 'url': '/python/python_cgi_programming.htm' },
+        {'name': 'Database Access', 'url': '/python/python_database_access.htm' },
+        {'name': 'Networking', 'url': '/python/python_networking.htm' },
+        {'name': 'Sending Email', 'url': '/python/python_sending_email.htm' },
+        {'name': 'Multithreading', 'url': '/python/python_multithreading.htm' },
+        {'name': 'XML Processing', 'url': '/python/python_xml_processing.htm' },
+        {'name': 'GUI Programming', 'url': '/python/python_gui_programming.htm' },
+        {'name': 'Further Extensions', 'url': '/python/python_further_extensions.htm' },
+    ],
+    ' Useful Resources': [
+        {'name': 'Questions and Answers', 'url': '/python/python_questions_answers.htm' },
+        {'name': 'Quick Guide', 'url': '/python/python_quick_guide.htm' },
+        {'name': 'Tools/Utilities', 'url': '/python/python_tools_utilities.htm' },
+        {'name': 'Useful Resources', 'url': '/python/python_useful_resources.htm' },
+        {'name': 'Discussion', 'url': '/python/python_discussion.htm' },
+    ],
 }
 
 
@@ -101,7 +98,8 @@ sections = {
 
 def add_scrap_content_to_db(tutorial, section, lesson, content):
     data = {'tutorial': tutorial,'section': section,'lesson': lesson,'content': content}
-    return requests.post("https://ds.localhost/wp-json/ds_lc/v1/lesson/add",
+    # return requests.post("https://ds.localhost/wp-json/ds_lc/v1/lesson/add",
+    return requests.post("https://dashencon.com/test/wp-json/ds_lc/v1/lesson/add",
         # proxies={'http': '222.255.169.74:8080'},
         timeout=15, json = data,verify=False)
 
