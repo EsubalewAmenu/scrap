@@ -247,3 +247,23 @@ Data Structures & Algorithms
 {'name': 'Discussion', 'url': '/bitcoin/bitcoin_discussion.htm' },
 ],
 }
+'Tutorial': [
+{'name': 'Home', 'url': '/machine_learning/index.htm' },
+{'name': 'Introduction', 'url': '/machine_learning/machine_learning_introduction.htm' },
+{'name': 'What Today’s AI Can Do?', 'url': '/machine_learning/machine_learning_what_todays_ai_can_do.htm' },
+{'name': 'Traditional AI', 'url': '/machine_learning/machine_learning_traditional_ai.htm' },
+{'name': 'What is Machine Learning?', 'url': '/machine_learning/what_is_machine_learning.htm' },
+{'name': 'Categories', 'url': '/machine_learning/machine_learning_categories.htm' },
+{'name': 'Supervised', 'url': '/machine_learning/machine_learning_supervised.htm' },
+{'name': 'Scikit-learn Algorithm', 'url': '/machine_learning/machine_learning_scikit_learn_algorithm.htm' },
+{'name': 'Unsupervised', 'url': '/machine_learning/machine_learning_unsupervised.htm' },
+{'name': 'Artificial Neural Networks', 'url': '/machine_learning/machine_learning_artificial_neural_networks.htm' },
+{'name': 'Deep Learning', 'url': '/machine_learning/deep_machine_learning.htm' },
+{'name': 'Skills', 'url': '/machine_learning/machine_learning_skills.htm' },
+{'name': 'Implementing', 'url': '/machine_learning/machine_learning_implementing.htm' },
+{'name': 'Conclusion', 'url': '/machine_learning/machine_learning_conclusion.htm' },
+{'name': 'Quick Guide', 'url': '/machine_learning/machine_learning_quick_guide.htm' },
+{'name': 'Useful Resources', 'url': '/machine_learning/machine_learning_useful_resources.htm' },
+{'name': 'Discussion', 'url': '/machine_learning/machine_learning_discussion.htm' },
+],
+}
