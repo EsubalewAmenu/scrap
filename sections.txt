@@ -130,5 +130,120 @@ sections = {
 {'name': 'AI with Python – Discussion', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_discussion.htm' },
 ],
 }
+Data Structures & Algorithms
+{
+'Data Structures & Algorithms': [
+{'name': 'DSA - Home', 'url': '/data_structures_algorithms/index.htm' },
+{'name': 'DSA - Overview', 'url': '/data_structures_algorithms/data_structure_overview.htm' },
+{'name': 'DSA - Environment Setup', 'url': '/data_structures_algorithms/data_structure_environment.htm' },
+],
+'Algorithm': [
+{'name': 'DSA - Algorithms Basics', 'url': '/data_structures_algorithms/algorithms_basics.htm' },
+{'name': 'DSA - Asymptotic Analysis', 'url': '/data_structures_algorithms/asymptotic_analysis.htm' },
+{'name': 'DSA - Greedy Algorithms', 'url': '/data_structures_algorithms/greedy_algorithms.htm' },
+{'name': 'DSA - Divide and Conquer', 'url': '/data_structures_algorithms/divide_and_conquer.htm' },
+{'name': 'DSA - Dynamic Programming', 'url': '/data_structures_algorithms/dynamic_programming.htm' },
+],
+'Data Structures': [
+{'name': 'DSA - Data Structure Basics', 'url': '/data_structures_algorithms/data_structures_basics.htm' },
+{'name': 'DSA - Array Data Structure', 'url': '/data_structures_algorithms/array_data_structure.htm' },
+],
+'Linked Lists': [
+{'name': 'DSA - Linked List Basics', 'url': '/data_structures_algorithms/linked_list_algorithms.htm' },
+{'name': 'DSA - Doubly Linked List', 'url': '/data_structures_algorithms/doubly_linked_list_algorithm.htm' },
+{'name': 'DSA - Circular Linked List', 'url': '/data_structures_algorithms/circular_linked_list_algorithm.htm' },
+],
+'Stack & Queue': [
+{'name': 'DSA - Stack', 'url': '/data_structures_algorithms/stack_algorithm.htm' },
+{'name': 'DSA - Expression Parsing', 'url': '/data_structures_algorithms/expression_parsing.htm' },
+{'name': 'DSA - Queue', 'url': '/data_structures_algorithms/dsa_queue.htm' },
+],
+'Searching Techniques': [
+{'name': 'DSA - Linear Search', 'url': '/data_structures_algorithms/linear_search_algorithm.htm' },
+{'name': 'DSA - Binary Search', 'url': '/data_structures_algorithms/binary_search_algorithm.htm' },
+{'name': 'DSA - Interpolation Search', 'url': '/data_structures_algorithms/interpolation_search_algorithm.htm' },
+{'name': 'DSA - Hash Table', 'url': '/data_structures_algorithms/hash_data_structure.htm' },
+],
+'Sorting Techniques': [
+{'name': 'DSA - Sorting Algorithms', 'url': '/data_structures_algorithms/sorting_algorithms.htm' },
+{'name': 'DSA - Bubble Sort', 'url': '/data_structures_algorithms/bubble_sort_algorithm.htm' },
+{'name': 'DSA - Insertion Sort', 'url': '/data_structures_algorithms/insertion_sort_algorithm.htm' },
+{'name': 'DSA - Selection Sort', 'url': '/data_structures_algorithms/selection_sort_algorithm.htm' },
+{'name': 'DSA - Merge Sort', 'url': '/data_structures_algorithms/merge_sort_algorithm.htm' },
+{'name': 'DSA - Shell Sort', 'url': '/data_structures_algorithms/shell_sort_algorithm.htm' },
+{'name': 'DSA - Quick Sort', 'url': '/data_structures_algorithms/quick_sort_algorithm.htm' },
+],
+'Graph Data Structure': [
+{'name': 'DSA - Graph Data Structure', 'url': '/data_structures_algorithms/graph_data_structure.htm' },
+{'name': 'DSA - Depth First Traversal', 'url': '/data_structures_algorithms/depth_first_traversal.htm' },
+{'name': 'DSA - Breadth First Traversal', 'url': '/data_structures_algorithms/breadth_first_traversal.htm' },
+],
+'Tree Data Structure': [
+{'name': 'DSA - Tree Data Structure', 'url': '/data_structures_algorithms/tree_data_structure.htm' },
+{'name': 'DSA - Tree Traversal', 'url': '/data_structures_algorithms/tree_traversal.htm' },
+{'name': 'DSA - Binary Search Tree', 'url': '/data_structures_algorithms/binary_search_tree.htm' },
+{'name': 'DSA - AVL Tree', 'url': '/data_structures_algorithms/avl_tree_algorithm.htm' },
+{'name': 'DSA - Spanning Tree', 'url': '/data_structures_algorithms/spanning_tree.htm' },
+{'name': 'DSA - Heap', 'url': '/data_structures_algorithms/heap_data_structure.htm' },
+],
+'Recursion': [
+{'name': 'DSA - Recursion Basics', 'url': '/data_structures_algorithms/recursion_basics.htm' },
+{'name': 'DSA - Tower of Hanoi', 'url': '/data_structures_algorithms/tower_of_hanoi.htm' },
+{'name': 'DSA - Fibonacci Series', 'url': '/data_structures_algorithms/fibonacci_series.htm' },
+],
+'DSA Useful Resources': [
+{'name': 'DSA - Questions and Answers', 'url': '/data_structures_algorithms/data_structures_algorithms_questions_answers.htm' },
+{'name': 'DSA - Quick Guide', 'url': '/data_structures_algorithms/dsa_quick_guide.htm' },
+{'name': 'DSA - Useful Resources', 'url': '/data_structures_algorithms/dsa_useful_resources.htm' },
+{'name': 'DSA - Discussion', 'url': '/data_structures_algorithms/dsa_discussion.htm' },
+],
+}
 
 
+'Tutorial': [
+{'name': 'Home', 'url': '/blockchain/index.htm' },
+{'name': 'Introduction', 'url': '/blockchain/blockchain_introduction.htm' },
+{'name': 'Double Spending', 'url': '/blockchain/blockchain_double_spending.htm' },
+{'name': 'Bitcoin - Brief History', 'url': '/blockchain/bitcoin_brief_history.htm' },
+{'name': 'Public Key Cryptography', 'url': '/blockchain/blockchain_public_key_cryptography.htm' },
+{'name': 'Hashing', 'url': '/blockchain/blockchain_hashing.htm' },
+{'name': 'Bitcoin - Mining', 'url': '/blockchain/bitcoin_mining.htm' },
+{'name': 'Chaining Blocks', 'url': '/blockchain/blockchain_chaining_blocks.htm' },
+{'name': 'Proof of Work', 'url': '/blockchain/blockchain_proof_of_work.htm' },
+{'name': 'Network & Mining', 'url': '/blockchain/blockchain_network_and_mining.htm' },
+{'name': 'Incentives to Miners', 'url': '/blockchain/blockchain_incentives_to_miners.htm' },
+{'name': 'Merkle Tree', 'url': '/blockchain/blockchain_merkle_tree.htm' },
+{'name': 'Payment Verification', 'url': '/blockchain/blockchain_payment_verification.htm' },
+{'name': 'Resolving Conflicts', 'url': '/blockchain/blockchain_resolving_conflicts.htm' },
+{'name': 'Privacy', 'url': '/blockchain/blockchain_privacy.htm' },
+{'name': 'Bitcoin - Mitigating Attacks', 'url': '/blockchain/bitcoin_mitigating_attacks.htm' },
+{'name': 'Conclusion', 'url': '/blockchain/blockchain_conclusion.htm' },
+],
+'Resources': [
+{'name': 'Quick Guide', 'url': '/blockchain/blockchain_quick_guide.htm' },
+{'name': 'Useful Resources', 'url': '/blockchain/blockchain_useful_resources.htm' },
+{'name': 'Discussion', 'url': '/blockchain/blockchain_discussion.htm' },
+],
+}
+
+
+'Tutorial': [
+{'name': 'Home', 'url': '/bitcoin/index.htm' },
+{'name': 'Introduction', 'url': '/bitcoin/bitcoin_introduction.htm' },
+{'name': 'Environmental Setup', 'url': '/bitcoin/bitcoin_environmental_setup.htm' },
+{'name': 'Blockchain Technology', 'url': '/bitcoin/bitcoin_blockchain_technology.htm' },
+{'name': 'Cryptocurrencies', 'url': '/bitcoin/bitcoin_cryptocurrencies.htm' },
+{'name': 'Features', 'url': '/bitcoin/bitcoin_features.htm' },
+{'name': 'How do they work', 'url': '/bitcoin/bitcoin_how_do_they_work.htm' },
+{'name': 'Wallet', 'url': '/bitcoin/bitcoin_wallet.htm' },
+{'name': 'Mining', 'url': '/bitcoin/bitcoin_mining.htm' },
+{'name': 'Exchanges', 'url': '/bitcoin/bitcoin_exchanges.htm' },
+{'name': 'Trading', 'url': '/bitcoin/bitcoin_trading.htm' },
+{'name': 'Glossary', 'url': '/bitcoin/bitcoin_glossary.htm' },
+{'name': 'Applications', 'url': '/bitcoin/bitcoin_applications.htm' },
+{'name': 'Future', 'url': '/bitcoin/bitcoin_future.htm' },
+{'name': 'Quick Guide', 'url': '/bitcoin/bitcoin_quick_guide.htm' },
+{'name': 'Useful Resources', 'url': '/bitcoin/bitcoin_useful_resources.htm' },
+{'name': 'Discussion', 'url': '/bitcoin/bitcoin_discussion.htm' },
+],
+}
