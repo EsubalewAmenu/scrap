@@ -3,9 +3,11 @@ import requests
 import time
 
 
+import certifi
+
 # python, java
-course_name = "Python"
-tutorial = "python"
+course_name = "Artificial intelligence with python"
+tutorial = "artificial_intelligence_with_python"
 base_url="https://www.tutorialspoint.com"
 
 
@@ -37,7 +39,7 @@ def check_classes_ids(tag):
 def scrap_content(endpoint):
     source=requests.get(base_url+endpoint,
         # proxies={'http': '222.255.169.74:8080'},
-        timeout=15)
+        timeout=15, verify=certifi.where())
   
     soup=BeautifulSoup(source.text,'html')
 
@@ -50,47 +52,43 @@ def scrap_content(endpoint):
     # return [content for content in contents.children]
 
 sections = {
-    'Basic Tutorial': [
-        {'name': 'Home', 'url': '/python/index.htm' },
-        {'name': 'Overview', 'url': '/python/python_overview.htm' },
-        {'name': 'Environment Setup', 'url': '/python/python_environment.htm' },
-        {'name': 'Basic Syntax', 'url': '/python/python_basic_syntax.htm' },
-        {'name': 'Comments', 'url': '/python/python_comments.htm' },
-        {'name': 'Variables', 'url': '/python/python_variables.htm' },
-        {'name': 'Data Types', 'url': '/python/python_data_types.htm' },
-        {'name': 'Operators', 'url': '/python/python_operators.htm' },
-        {'name': 'Decision Making', 'url': '/python/python_decision_making.htm' },
-        {'name': 'Loops', 'url': '/python/python_loops.htm' },
-        {'name': 'Numbers', 'url': '/python/python_numbers.htm' },
-        {'name': 'Strings', 'url': '/python/python_strings.htm' },
-        {'name': 'Lists', 'url': '/python/python_lists.htm' },
-        {'name': 'Tuples', 'url': '/python/python_tuples.htm' },
-        {'name': 'Dictionary', 'url': '/python/python_dictionary.htm' },
-        {'name': 'Date & Time', 'url': '/python/python_date_time.htm' },
-        {'name': 'Functions', 'url': '/python/python_functions.htm' },
-        {'name': 'Modules', 'url': '/python/python_modules.htm' },
-        {'name': 'Files I/O', 'url': '/python/python_files_io.htm' },
-        {'name': 'Exceptions', 'url': '/python/python_exceptions.htm' },
-    ],
-    'Advanced Tutorial': [
-        {'name': 'Classes/Objects', 'url': '/python/python_classes_objects.htm' },
-        {'name': 'Reg Expressions', 'url': '/python/python_reg_expressions.htm' },
-        {'name': 'CGI Programming', 'url': '/python/python_cgi_programming.htm' },
-        {'name': 'Database Access', 'url': '/python/python_database_access.htm' },
-        {'name': 'Networking', 'url': '/python/python_networking.htm' },
-        {'name': 'Sending Email', 'url': '/python/python_sending_email.htm' },
-        {'name': 'Multithreading', 'url': '/python/python_multithreading.htm' },
-        {'name': 'XML Processing', 'url': '/python/python_xml_processing.htm' },
-        {'name': 'GUI Programming', 'url': '/python/python_gui_programming.htm' },
-        {'name': 'Further Extensions', 'url': '/python/python_further_extensions.htm' },
-    ],
-    ' Useful Resources': [
-        {'name': 'Questions and Answers', 'url': '/python/python_questions_answers.htm' },
-        {'name': 'Quick Guide', 'url': '/python/python_quick_guide.htm' },
-        {'name': 'Tools/Utilities', 'url': '/python/python_tools_utilities.htm' },
-        {'name': 'Useful Resources', 'url': '/python/python_useful_resources.htm' },
-        {'name': 'Discussion', 'url': '/python/python_discussion.htm' },
-    ],
+'AI with Python Tutorial': [
+{'name': 'Home', 'url': '/artificial_intelligence_with_python/index.htm' },
+{'name': 'AI with Python – Primer Concepts', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_primer_concepts.htm' },
+{'name': 'AI with Python – Getting Started', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_getting_started.htm' },
+{'name': 'AI with Python – Machine Learning', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_machine_learning.htm' },
+{'name': 'AI with Python – Data Preparation', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_data_preparation.htm' },
+{'name': 'Supervised Learning: Classification', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_supervised_learning_classification.htm' },
+{'name': 'Supervised Learning: Regression', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_supervised_learning_regression.htm' },
+{'name': 'AI with Python – Logic Programming', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_logic_programming.htm' },
+{'name': 'Unsupervised Learning: Clustering', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_unsupervised_learning_clustering.htm' },
+{'name': 'Natural Language Processing', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_natural_language_processing.htm' },
+{'name': 'AI with Python – NLTK Package', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_nltk_package.htm' },
+{'name': 'Analyzing Time Series Data', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_analyzing_time_series_data.htm' },
+{'name': 'AI with Python – Speech Recognition', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_speech_recognition.htm' },
+{'name': 'AI with Python – Heuristic Search', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_heuristic_search.htm' },
+{'name': 'AI with Python – Gaming', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_gaming.htm' },
+{'name': 'AI with Python – Neural Networks', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_neural_networks.htm' },
+{'name': 'Reinforcement Learning', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_reinforcement_learning.htm' },
+{'name': 'AI with Python – Genetic Algorithms', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_genetic_algorithms.htm' },
+{'name': 'AI with Python – Computer Vision', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_computer_vision.htm' },
+{'name': 'AI with Python – Deep Learning', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_deep_learning.htm' },
+{'name': 'AI with Python – Quick Guide', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_quick_guide.htm' },
+{'name': 'AI with Python – Useful Resources', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_useful_resources.htm' },
+{'name': 'AI with Python – Discussion', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_discussion.htm' },
+{'name': 'UPSC IAS Exams Notes', 'url': '/upsc_ias_exams.htm' },
+{'name': 'Developer\'s Best Practices', 'url': '/developers_best_practices/index.htm' },
+{'name': 'Questions and Answers', 'url': '/questions_and_answers.htm' },
+{'name': 'Effective Resume Writing', 'url': '/effective_resume_writing.htm' },
+{'name': 'HR Interview Questions', 'url': '/hr_interview_questions/index.htm' },
+{'name': 'Computer Glossary', 'url': '/computer_glossary.htm' },
+{'name': 'Who is Who', 'url': '/computer_whoiswho.htm' },
+],
+'AI with Python Resources': [
+{'name': 'AI with Python – Quick Guide', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_quick_guide.htm' },
+{'name': 'AI with Python – Useful Resources', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_useful_resources.htm' },
+{'name': 'AI with Python – Discussion', 'url': '/artificial_intelligence_with_python/artificial_intelligence_with_python_discussion.htm' },
+],
 }
 
 
@@ -98,17 +96,30 @@ sections = {
 
 def add_scrap_content_to_db(tutorial, section, lesson, content):
     data = {'tutorial': tutorial,'section': section,'lesson': lesson,'content': content}
-    # return requests.post("https://ds.localhost/wp-json/ds_lc/v1/lesson/add",
-    return requests.post("https://dashencon.com/test/wp-json/ds_lc/v1/lesson/add",
+    # return requests.post("https://dashencon.com/test/wp-json/ds_lc/v1/lesson/add",
+
+    headers = {
+        'username': 'esubalew.a2009@gmail.com',
+        'password': 'Hereseb@1',
+        'login_with': 'email_password'
+    }
+
+    return requests.post("https://datascienceplc.com/expertsway/api/ds_lc/v1/lesson/add",
         # proxies={'http': '222.255.169.74:8080'},
-        timeout=15, json = data,verify=False)
+        timeout=15, json = data, headers=headers, verify=certifi.where())
 
 for section in sections:
     for lesson in sections[section]:
         print('lesson name ', lesson['name'],'url',base_url+lesson['url'])
         content = scrap_content(lesson['url'])
         add_to_db = add_scrap_content_to_db(tutorial,section,lesson['name'],content)
-        print(section,lesson['name'], add_to_db)
+        
+        try:
+            add_to_db.raise_for_status()
+            print(section,lesson['name'], add_to_db)
+        except requests.exceptions.HTTPError as e:
+            print(f"Error: {e}")
+
         time.sleep(10)
 
 # scrap_lesson(endpoint)
