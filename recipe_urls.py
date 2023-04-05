@@ -49,10 +49,9 @@ headers = {
         'login_with': 'google'
     }
 
-category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
-
-response_body = category_url.json()
 # print(response_body['url'])
 
 for i in range(100):
+    category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
+    response_body = category_url.json()
     scrap_urls(response_body['url'])
