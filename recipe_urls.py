@@ -18,8 +18,8 @@ def add_recipe_url_to_db(url):
         timeout=15, json = data, headers=headers, verify=certifi.where())
 
 ########################################################################################################
-def scrap_urls(parent_url):
-    print("parent url is ", 'https://www.allrecipes.com/recipes/'+parent_url)
+def scrap_urls(i, parent_url):
+    print("parent url is ", i, 'https://www.allrecipes.com/recipes/'+parent_url)
     source=requests.get('https://www.allrecipes.com/recipes/'+parent_url,
         verify=certifi.where(),
         # proxies={'http': '222.255.169.74:8080'},
@@ -54,4 +54,4 @@ headers = {
 for i in range(100):
     category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
     response_body = category_url.json()
-    scrap_urls(response_body['url'])
+    scrap_urls(i, response_body['url'])
