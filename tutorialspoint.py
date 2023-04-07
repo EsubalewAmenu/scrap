@@ -76,55 +76,61 @@ def scrap_lessons(sections):
 
 def start_scraping_lessons(): 
     sections = {
-'Learn MySQL': [
-{'name': 'MySQL - Home', 'url': '/mysql/index.htm' },
-{'name': 'MySQL - Introduction', 'url': '/mysql/mysql-introduction.htm' },
-{'name': 'MySQL - Installation', 'url': '/mysql/mysql-installation.htm' },
-{'name': 'MySQL - Administration', 'url': '/mysql/mysql-administration.htm' },
-{'name': 'MySQL - PHP Syntax', 'url': '/mysql/mysql-php-syntax.htm' },
-{'name': 'MySQL - Connection', 'url': '/mysql/mysql-connection.htm' },
-{'name': 'MySQL - Create Database', 'url': '/mysql/mysql-create-database.htm' },
-{'name': 'MySQL - Drop Database', 'url': '/mysql/mysql-drop-database.htm' },
-{'name': 'MySQL - Select Database', 'url': '/mysql/mysql-select-database.htm' },
-{'name': 'MySQL - Data Types', 'url': '/mysql/mysql-data-types.htm' },
-{'name': 'MySQL - Create Tables', 'url': '/mysql/mysql-create-tables.htm' },
-{'name': 'MySQL - Drop Tables', 'url': '/mysql/mysql-drop-tables.htm' },
-{'name': 'MySQL - Insert Query', 'url': '/mysql/mysql-insert-query.htm' },
-{'name': 'MySQL - Select Query', 'url': '/mysql/mysql-select-query.htm' },
-{'name': 'MySQL - Where Clause', 'url': '/mysql/mysql-where-clause.htm' },
-{'name': 'MySQL - Update Query', 'url': '/mysql/mysql-update-query.htm' },
-{'name': 'MySQL - Delete Query', 'url': '/mysql/mysql-delete-query.htm' },
-{'name': 'MySQL - Like Clause', 'url': '/mysql/mysql-like-clause.htm' },
-{'name': 'MySQL - Sorting Results', 'url': '/mysql/mysql-sorting-results.htm' },
-{'name': 'MySQL - Using Join', 'url': '/mysql/mysql-using-joins.htm' },
-{'name': 'MySQL - NULL Values', 'url': '/mysql/mysql-null-values.htm' },
-{'name': 'MySQL - Regexps', 'url': '/mysql/mysql-regexps.htm' },
-{'name': 'MySQL - Transactions', 'url': '/mysql/mysql-transactions.htm' },
-{'name': 'MySQL - Alter Command', 'url': '/mysql/mysql-alter-command.htm' },
-{'name': 'MySQL - Indexes', 'url': '/mysql/mysql-indexes.htm' },
-{'name': 'MySQL - Temporary Tables', 'url': '/mysql/mysql-temporary-tables.htm' },
-{'name': 'MySQL - Clone Tables', 'url': '/mysql/mysql-clone-tables.htm' },
-{'name': 'MySQL - Database Info', 'url': '/mysql/mysql-database-info.htm' },
-{'name': 'MySQL - Using Sequences', 'url': '/mysql/mysql-using-sequences.htm' },
-{'name': 'MySQL - Handling Duplicates', 'url': '/mysql/mysql-handling-duplicates.htm' },
-{'name': 'MySQL - SQL Injection', 'url': '/mysql/mysql-sql-injection.htm' },
-{'name': 'MySQL - Database Export', 'url': '/mysql/mysql-database-export.htm' },
-{'name': 'MySQL - Database Import', 'url': '/mysql/mysql-database-import.htm' },
+'Basics Tutorial': [
+{'name': 'Home', 'url': '/javascript/index.htm' },
+{'name': 'Overview', 'url': '/javascript/javascript_overview.htm' },
+{'name': 'Syntax', 'url': '/javascript/javascript_syntax.htm' },
+{'name': 'Enabling', 'url': '/javascript/javascript_enabling.htm' },
+{'name': 'Placement', 'url': '/javascript/javascript_placement.htm' },
+{'name': 'Variables', 'url': '/javascript/javascript_variables.htm' },
+{'name': 'Operators', 'url': '/javascript/javascript_operators.htm' },
+{'name': 'If...Else', 'url': '/javascript/javascript_ifelse.htm' },
+{'name': 'Switch Case', 'url': '/javascript/javascript_switch_case.htm' },
+{'name': 'While Loop', 'url': '/javascript/javascript_while_loop.htm' },
+{'name': 'For Loop', 'url': '/javascript/javascript_for_loop.htm' },
+{'name': 'For...in', 'url': '/javascript/javascript_forin_loop.htm' },
+{'name': 'Loop Control', 'url': '/javascript/javascript_loop_control.htm' },
+{'name': 'Functions', 'url': '/javascript/javascript_functions.htm' },
+{'name': 'Events', 'url': '/javascript/javascript_events.htm' },
+{'name': 'Cookies', 'url': '/javascript/javascript_cookies.htm' },
+{'name': 'Page Redirect', 'url': '/javascript/javascript_page_redirect.htm' },
+{'name': 'Dialog Boxes', 'url': '/javascript/javascript_dialog_boxes.htm' },
+{'name': 'Void Keyword', 'url': '/javascript/javascript_void_keyword.htm' },
+{'name': 'Page Printing', 'url': '/javascript/javascript_page_printing.htm' },
 ],
-'MySQL Useful Resources': [
-{'name': 'MySQL - Useful Functions', 'url': '/mysql/mysql-useful-functions.htm' },
-{'name': 'MySQL - Statements Reference', 'url': '/mysql/mysql_statements_reference.htm' },
-{'name': 'MySQL - Quick Guide', 'url': '/mysql/mysql-quick-guide.htm' },
-{'name': 'MySQL - Useful Resources', 'url': '/mysql/mysql-useful-resources.htm' },
-{'name': 'MySQL - Discussion', 'url': '/mysql/mysql-discussion.htm' },
+'JavaScript Objects': [
+{'name': 'Objects', 'url': '/javascript/javascript_objects.htm' },
+{'name': 'Number', 'url': '/javascript/javascript_number_object.htm' },
+{'name': 'Boolean', 'url': '/javascript/javascript_boolean_object.htm' },
+{'name': 'Strings', 'url': '/javascript/javascript_strings_object.htm' },
+{'name': 'Arrays', 'url': '/javascript/javascript_arrays_object.htm' },
+{'name': 'Date', 'url': '/javascript/javascript_date_object.htm' },
+{'name': 'Math', 'url': '/javascript/javascript_math_object.htm' },
+{'name': 'RegExp', 'url': '/javascript/javascript_regexp_object.htm' },
+{'name': 'HTML DOM', 'url': '/javascript/javascript_html_dom.htm' },
+],
+'JavaScript Advanced': [
+{'name': 'Error Handling', 'url': '/javascript/javascript_error_handling.htm' },
+{'name': 'Validations', 'url': '/javascript/javascript_form_validations.htm' },
+{'name': 'Animation', 'url': '/javascript/javascript_animation.htm' },
+{'name': 'Multimedia', 'url': '/javascript/javascript_multimedia.htm' },
+{'name': 'Debugging', 'url': '/javascript/javascript_debugging.htm' },
+{'name': 'Image Map', 'url': '/javascript/javascript_image_map.htm' },
+{'name': 'Browsers', 'url': '/javascript/javascript_browsers_handling.htm' },
+],
+'JavaScript Useful Resources': [
+{'name': 'Questions And Answers', 'url': '/javascript/javascript_questions_answers.htm' },
+{'name': 'Quick Guide', 'url': '/javascript/javascript_quick_guide.htm' },
+{'name': 'Functions', 'url': '/javascript/javascript_builtin_functions.htm' },
+{'name': 'Resources', 'url': '/javascript/javascript_useful_resources.htm' },
 ],
 }
     scrap_lessons(sections)
 
 
 # python, java
-course_name = "Mysql"
-tutorial = "mysql"
+course_name = "Javascript"
+tutorial = "javascript"
 base_url="https://www.tutorialspoint.com"
 
 
