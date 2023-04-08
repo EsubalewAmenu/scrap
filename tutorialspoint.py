@@ -76,61 +76,67 @@ def scrap_lessons(sections):
 
 def start_scraping_lessons(): 
     sections = {
-'Basics Tutorial': [
-{'name': 'Home', 'url': '/javascript/index.htm' },
-{'name': 'Overview', 'url': '/javascript/javascript_overview.htm' },
-{'name': 'Syntax', 'url': '/javascript/javascript_syntax.htm' },
-{'name': 'Enabling', 'url': '/javascript/javascript_enabling.htm' },
-{'name': 'Placement', 'url': '/javascript/javascript_placement.htm' },
-{'name': 'Variables', 'url': '/javascript/javascript_variables.htm' },
-{'name': 'Operators', 'url': '/javascript/javascript_operators.htm' },
-{'name': 'If...Else', 'url': '/javascript/javascript_ifelse.htm' },
-{'name': 'Switch Case', 'url': '/javascript/javascript_switch_case.htm' },
-{'name': 'While Loop', 'url': '/javascript/javascript_while_loop.htm' },
-{'name': 'For Loop', 'url': '/javascript/javascript_for_loop.htm' },
-{'name': 'For...in', 'url': '/javascript/javascript_forin_loop.htm' },
-{'name': 'Loop Control', 'url': '/javascript/javascript_loop_control.htm' },
-{'name': 'Functions', 'url': '/javascript/javascript_functions.htm' },
-{'name': 'Events', 'url': '/javascript/javascript_events.htm' },
-{'name': 'Cookies', 'url': '/javascript/javascript_cookies.htm' },
-{'name': 'Page Redirect', 'url': '/javascript/javascript_page_redirect.htm' },
-{'name': 'Dialog Boxes', 'url': '/javascript/javascript_dialog_boxes.htm' },
-{'name': 'Void Keyword', 'url': '/javascript/javascript_void_keyword.htm' },
-{'name': 'Page Printing', 'url': '/javascript/javascript_page_printing.htm' },
+'Basics': [
+{'name': 'C++ Home', 'url': '/cplusplus/index.htm' },
+{'name': 'C++ Overview', 'url': '/cplusplus/cpp_overview.htm' },
+{'name': 'C++ Environment Setup', 'url': '/cplusplus/cpp_environment_setup.htm' },
+{'name': 'C++ Basic Syntax', 'url': '/cplusplus/cpp_basic_syntax.htm' },
+{'name': 'C++ Comments', 'url': '/cplusplus/cpp_comments.htm' },
+{'name': 'C++ Data Types', 'url': '/cplusplus/cpp_data_types.htm' },
+{'name': 'C++ Variable Types', 'url': '/cplusplus/cpp_variable_types.htm' },
+{'name': 'C++ Variable Scope', 'url': '/cplusplus/cpp_variable_scope.htm' },
+{'name': 'C++ Constants/Literals', 'url': '/cplusplus/cpp_constants_literals.htm' },
+{'name': 'C++ Modifier Types', 'url': '/cplusplus/cpp_modifier_types.htm' },
+{'name': 'C++ Storage Classes', 'url': '/cplusplus/cpp_storage_classes.htm' },
+{'name': 'C++ Operators', 'url': '/cplusplus/cpp_operators.htm' },
+{'name': 'C++ Loop Types', 'url': '/cplusplus/cpp_loop_types.htm' },
+{'name': 'C++ Decision Making', 'url': '/cplusplus/cpp_decision_making.htm' },
+{'name': 'C++ Functions', 'url': '/cplusplus/cpp_functions.htm' },
+{'name': 'C++ Numbers', 'url': '/cplusplus/cpp_numbers.htm' },
+{'name': 'C++ Arrays', 'url': '/cplusplus/cpp_arrays.htm' },
+{'name': 'C++ Strings', 'url': '/cplusplus/cpp_strings.htm' },
+{'name': 'C++ Pointers', 'url': '/cplusplus/cpp_pointers.htm' },
+{'name': 'C++ References', 'url': '/cplusplus/cpp_references.htm' },
+{'name': 'C++ Date & Time', 'url': '/cplusplus/cpp_date_time.htm' },
+{'name': 'C++ Basic Input/Output', 'url': '/cplusplus/cpp_basic_input_output.htm' },
+{'name': 'C++ Data Structures', 'url': '/cplusplus/cpp_data_structures.htm' },
 ],
-'JavaScript Objects': [
-{'name': 'Objects', 'url': '/javascript/javascript_objects.htm' },
-{'name': 'Number', 'url': '/javascript/javascript_number_object.htm' },
-{'name': 'Boolean', 'url': '/javascript/javascript_boolean_object.htm' },
-{'name': 'Strings', 'url': '/javascript/javascript_strings_object.htm' },
-{'name': 'Arrays', 'url': '/javascript/javascript_arrays_object.htm' },
-{'name': 'Date', 'url': '/javascript/javascript_date_object.htm' },
-{'name': 'Math', 'url': '/javascript/javascript_math_object.htm' },
-{'name': 'RegExp', 'url': '/javascript/javascript_regexp_object.htm' },
-{'name': 'HTML DOM', 'url': '/javascript/javascript_html_dom.htm' },
+'Object Oriented': [
+{'name': 'C++ Classes & Objects', 'url': '/cplusplus/cpp_classes_objects.htm' },
+{'name': 'C++ Inheritance', 'url': '/cplusplus/cpp_inheritance.htm' },
+{'name': 'C++ Overloading', 'url': '/cplusplus/cpp_overloading.htm' },
+{'name': 'C++ Polymorphism', 'url': '/cplusplus/cpp_polymorphism.htm' },
+{'name': 'C++ Abstraction', 'url': '/cplusplus/cpp_data_abstraction.htm' },
+{'name': 'C++ Encapsulation', 'url': '/cplusplus/cpp_data_encapsulation.htm' },
+{'name': 'C++ Interfaces', 'url': '/cplusplus/cpp_interfaces.htm' },
 ],
-'JavaScript Advanced': [
-{'name': 'Error Handling', 'url': '/javascript/javascript_error_handling.htm' },
-{'name': 'Validations', 'url': '/javascript/javascript_form_validations.htm' },
-{'name': 'Animation', 'url': '/javascript/javascript_animation.htm' },
-{'name': 'Multimedia', 'url': '/javascript/javascript_multimedia.htm' },
-{'name': 'Debugging', 'url': '/javascript/javascript_debugging.htm' },
-{'name': 'Image Map', 'url': '/javascript/javascript_image_map.htm' },
-{'name': 'Browsers', 'url': '/javascript/javascript_browsers_handling.htm' },
+'Advanced': [
+{'name': 'C++ Files and Streams', 'url': '/cplusplus/cpp_files_streams.htm' },
+{'name': 'C++ Exception Handling', 'url': '/cplusplus/cpp_exceptions_handling.htm' },
+{'name': 'C++ Dynamic Memory', 'url': '/cplusplus/cpp_dynamic_memory.htm' },
+{'name': 'C++ Namespaces', 'url': '/cplusplus/cpp_namespaces.htm' },
+{'name': 'C++ Templates', 'url': '/cplusplus/cpp_templates.htm' },
+{'name': 'C++ Preprocessor', 'url': '/cplusplus/cpp_preprocessor.htm' },
+{'name': 'C++ Signal Handling', 'url': '/cplusplus/cpp_signal_handling.htm' },
+{'name': 'C++ Multithreading', 'url': '/cplusplus/cpp_multithreading.htm' },
+{'name': 'C++ Web Programming', 'url': '/cplusplus/cpp_web_programming.htm' },
 ],
-'JavaScript Useful Resources': [
-{'name': 'Questions And Answers', 'url': '/javascript/javascript_questions_answers.htm' },
-{'name': 'Quick Guide', 'url': '/javascript/javascript_quick_guide.htm' },
-{'name': 'Functions', 'url': '/javascript/javascript_builtin_functions.htm' },
-{'name': 'Resources', 'url': '/javascript/javascript_useful_resources.htm' },
+'Useful Resources': [
+{'name': 'C++ Questions and Answers', 'url': '/cplusplus/cpp_questions_answers.htm' },
+{'name': 'C++ Quick Guide', 'url': '/cplusplus/cpp_quick_guide.htm' },
+{'name': 'C++ Object Oriented', 'url': '/cplusplus/cpp_object_oriented.htm' },
+{'name': 'C++ STL Tutorial', 'url': '/cplusplus/cpp_stl_tutorial.htm' },
+{'name': 'C++ Standard Library', 'url': '/cplusplus/cpp_standard_library.htm' },
+{'name': 'C++ Useful Resources', 'url': '/cplusplus/cpp_useful_resources.htm' },
+{'name': 'C++ Discussion', 'url': '/cplusplus/cpp_discussion.htm' },
 ],
 }
     scrap_lessons(sections)
 
 
 # python, java
-course_name = "Javascript"
-tutorial = "javascript"
+course_name = "C++"
+tutorial = "cplusplus"
 base_url="https://www.tutorialspoint.com"
 
 
