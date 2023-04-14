@@ -26,17 +26,6 @@ def scrap_recipe(i, recipe_url):
     soup = BeautifulSoup(driver.page_source, "html.parser")
 
 
-    # num_of_photos_div = soup.find("div", {"id": "recipe-review-bar_1-0"})
-    # num_of_photos = num_of_photos_div.find("div", {"id": "recipe-review-bar__photo-count_1-0"}).text.strip()
-
-    # match = re.search(r'\d+', num_of_photos)
-    # if match:
-    #     num_photos = int(match.group())
-    # else:
-    #     print("No number found in the text.")
-    #     return "check recipe photos"
-
-
     category_names = recipe_categories(soup)
     title, description, recipe_by, published_date = recipe(soup)
     rating_points, rating_count = recipe_rattings(soup)
@@ -75,28 +64,54 @@ def scrap_recipe(i, recipe_url):
 ########################################################################################################
 def recipe_images(driver, soup):
 
-    try:
-        link = driver.find_element(By.CLASS_NAME, 'gallery-photos')
-        # Click on the "Load More" button until all images are loaded
-        while True:
-            try:
-                link.click()
-                time.sleep(5)
 
-            except:
-                break
-
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-
-        # locate all the img tags in the HTML
-        div_element = soup.find('div', {'id': 'photo-dialog__page_1-0'})
-        img_tags = div_element.find_all('img')
-    except NoSuchElementException:
+    if driver.find_elements(By.CLASS_NAME, 'gallery-photos'):
+        print("more images")
         try:
-            # find all the img tags inside the div with id="article__photo-ribbon_1-0"
-            img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
-        except AttributeError:
+            link = driver.find_element(By.CLASS_NAME, 'gallery-photos')
+            # Click on the "Load More" button until all images are loaded
+            while True:
+                try:
+                    link.click()
+                    time.sleep(5)
+
+                except:
+                    break
+
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+
+            # locate all the img tags in the HTML
+            div_element = soup.find('div', {'id': 'photo-dialog__page_1-0'})
+            img_tags = div_element.find_all('img')
+        except NoSuchElementException:
             return None
+    else:
+        # check photos with 
+        #     1 or 2 photo
+        #     empty photos
+        num_of_photos_div = soup.find("div", {"id": "recipe-review-bar_1-0"})
+        num_of_photos = num_of_photos_div.find("div", {"id": "recipe-review-bar__photo-count_1-0"}).text.strip()
+
+        match = re.search(r'\d+', num_of_photos)
+        if match:
+            num_photos = int(match.group())
+            print(num_photos)
+        else:
+            print("No number found in the text.")
+            return "check recipe photos"
+
+        if num_photos == 1:
+            img_tags = []
+            img_tags.append(soup.find("img", {"class": "universal-image__image"}))
+
+        elif driver.find_elements(By.ID, 'article__photo-ribbon_1-0'):
+            print("images on row only")
+            try:
+                # find all the img tags inside the div with id="article__photo-ribbon_1-0"
+                img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
+            except AttributeError:
+                return None
+
 
     image_links = []
 
@@ -330,4 +345,4 @@ for i in range(1):
 #     # category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
 #     # response_body = category_url.json()
 #     # scrap_recipe(i, response_body['url'])
-    scrap_recipe(i, "https://www.allrecipes.com/recipe/81321/restaurant-style-sweet-potato-casserole/")
+    scrap_recipe(i, "https://www.allrecipes.com/recipe/284760/cinnamon-roll-monkey-bread/")
