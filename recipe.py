@@ -190,6 +190,7 @@ def recipe_nutritions(soup):
             # print(nutrient_value)
             try:
                 daily_value = columns[1].text.strip()
+                daily_value = daily_value.replace('%', '')
             except:
                 daily_value = None
 
