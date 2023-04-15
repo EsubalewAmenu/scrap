@@ -56,11 +56,11 @@ def scrap_recipe(i, recipe_url):
     full_recipe_dict['nutrition_info'] = nutrition_info
 
     # # full_recipe_dict = {'slug': '81321/restaurant-style-sweet-potato-casserole', 'category_names': ['Side Dish', 'Vegetables', 'Sweet Potatoes', 'Sweet Potatoes With Marshmallow Recipes'], 'title': 'Restaurant-Style Sweet Potato Casserole', 'description': "The brown sugar, cream, marshmallows, and oatmeal streusel give this casserole a taste similar to sweet potato pie, yet the dish goes great alongside meals as varied as low-key chicken dinners or festive holiday banquets. And the great part is, if you're planning to use this for entertaining, you can make everything but the streusel a day ahead so you won't be stressed at crunch time.", 'recipe_by': 'kelcampbell', 'published_date': '2020-03-04 00:00:00', 'rating_points': '4.9', 'rating_count': '8', 'image_links': ['https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fpublic-assets-ucg.meredithcorp.io%2F4df8e36df71f154b56a7489ffc166973%2F6071232.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F6027716.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F4143066.jpg&q=60&c=sc&orient=true&poi=auto'], 'prep_time': '20 mins', 'cook_time': '2 hrs 10 mins', 'additional_time': None, 'total_time': '2 hrs 30 mins', 'servings': '12', 'recipe_yield': '12 servings', 'ingredients': [('2 ½', 'pounds', 'sweet potatoes'), ('1', 'teaspoon', 'vegetable oil, or as needed'), ('¾', 'cup', 'dark brown sugar'), ('½', 'cup', 'heavy whipping cream'), ('¼', 'cup', 'melted butter'), ('¼', 'teaspoon', 'ground cinnamon'), ('¼', 'teaspoon', 'salt')], 'steps': ['Preheat oven to 400 degrees F (200 degrees C).', 'Rub the skin of each sweet potato with vegetable oil; place potatoes on a baking sheet.', 'Bake in the preheated oven until tender, about 1 hour; remove and cool slightly. Reduce oven temperature to 350 degrees F (175 degrees C).', 'When sweet potatoes are cool enough to handle, scrape flesh into a large bowl; discard skins. Beat sweet potatoes with an electric mixer until smooth.', 'Measure 6 cups of mashed sweet potato into a large bowl; beat in 3/4 cup brown sugar, cream, 1/4 cup melted butter, 1/4 teaspoon cinnamon, and salt. Pour sweet potato mixture into an 8x8-inch baking dish.', 'Place the rolled oats into the bowl of a food processor or blender, and pulse until oats are finely ground. Place oats, 2 tablespoons brown sugar, flour, and 1/8 teaspoon cinnamon into a bowl. Cut 2 tablespoons cold butter into the oat mixture with a pastry blender or fork until crumbly; sprinkle evenly over sweet potato mixture.', 'Bake in the preheated oven until sweet potatoes are heated through and oatmeal streusel is lightly browned, 70 to 80 minutes. Remove from oven, sprinkle immediately with marshmallows, and let stand until marshmallows are melted, about 10 minutes.'], 'nutrition_info': [['Calories', '269', None], ['Total Fat', '10g', '13%'], ['Saturated Fat', '6g', '31%'], ['Cholesterol', '29mg', '10%'], ['Sodium', '340mg', '15%'], ['Total Carbohydrate', '43g', '16%'], ['Dietary Fiber', '3g', '12%'], ['Total Sugars', '29g', None], ['Protein', '3g', None], ['Vitamin C', '19mg', '93%'], ['Calcium', '58mg', '4%'], ['Iron', '1mg', '5%'], ['Potassium', '485mg', '10%']]}
-    print(full_recipe_dict)
+    # print(full_recipe_dict)
 
 
     driver.quit()
-    time.sleep(3)
+    return full_recipe_dict
 ########################################################################################################
 def recipe_images(driver, soup):
 
@@ -350,4 +350,10 @@ for i in range(1):
 #     # category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
 #     # response_body = category_url.json()
 #     # scrap_recipe(i, response_body['url'])
-    scrap_recipe(i, "https://www.allrecipes.com/slow-cooker-overnight-ham-and-cheese-breakfast-casserole-recipe-7372845")
+    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/slow-cooker-overnight-ham-and-cheese-breakfast-casserole-recipe-7372845")
+    if recipe_data['image_links']:
+        print(recipe_data)
+    else:
+        print("jumped")
+        
+    time.sleep(3)
