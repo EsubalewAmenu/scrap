@@ -96,6 +96,7 @@ def recipe_images(driver, soup):
             num_photos = int(match.group())
         else:
             print("No number found in the text.")
+            raise NoSuchElementException
 
         print("numb of img", num_photos)
 
@@ -112,6 +113,7 @@ def recipe_images(driver, soup):
                 img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
             except AttributeError:
                 print("exception")
+                raise NoSuchElementException
 
 
     image_links = []
@@ -381,7 +383,7 @@ for i in range(1):
 #     # scrap_recipe(i, response_body['url'])
     recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/265505/maple-and-brown-sugar-oatmeal/")
 
-    print(recipe_data)
+    # print(recipe_data)
 
     if recipe_data['image_links']:
         print(recipe_data)
