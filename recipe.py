@@ -30,7 +30,7 @@ def scrap_recipe(i, recipe_url):
     title, description, recipe_by, published_date = recipe(soup)
     rating_points, rating_count = recipe_rattings(soup)
     image_links = recipe_images(driver, soup)
-    prep_time, cook_time, additional_time, total_time, servings, recipe_yield = detail_times(soup)
+    prep_time, cook_time, refrigerate_time, additional_time, total_time, servings, recipe_yield = detail_times(soup)
     ingredients, to_serves = recipe_ingredients(soup)
     steps = recipe_steps(soup)
     nutrition_info = recipe_nutritions(soup)
@@ -47,6 +47,7 @@ def scrap_recipe(i, recipe_url):
     full_recipe_dict['image_links'] = image_links
     full_recipe_dict['prep_time'] = prep_time
     full_recipe_dict['cook_time'] = cook_time
+    full_recipe_dict['refrigerate_time'] = refrigerate_time
     full_recipe_dict['additional_time'] = additional_time
     full_recipe_dict['total_time'] = total_time
     full_recipe_dict['servings'] = servings
@@ -309,6 +310,10 @@ def detail_times(soup):
     except AttributeError:
         cook_time = None
     try:
+        refrigerate_time = soup.find("div", {"class": "mntl-recipe-details__label"}, string="Refrigerate Time:").find_next_sibling("div").string.strip()#.split()
+    except AttributeError:
+        refrigerate_time = None
+    try:
         additional_time = soup.find("div", {"class": "mntl-recipe-details__label"}, string="Additional Time:").find_next_sibling("div").string.strip()#.split()
     except AttributeError:
         additional_time = None
@@ -325,7 +330,7 @@ def detail_times(soup):
     except AttributeError:
             recipe_yield = None
         
-    return prep_time, cook_time, additional_time, total_time, servings, recipe_yield
+    return prep_time, cook_time, refrigerate_time, additional_time, total_time, servings, recipe_yield
 ########################################################################################################
 
 def convert_date(date_str):
@@ -350,10 +355,13 @@ for i in range(1):
 #     # category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
 #     # response_body = category_url.json()
 #     # scrap_recipe(i, response_body['url'])
-    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/slow-cooker-overnight-ham-and-cheese-breakfast-casserole-recipe-7372845")
+    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/banana-split-chia-seed-pudding-recipe-7372050")
+
+    print(recipe_data)
+
     if recipe_data['image_links']:
         print(recipe_data)
     else:
         print("jumped")
-        
+
     time.sleep(3)
