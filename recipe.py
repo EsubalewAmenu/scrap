@@ -217,8 +217,14 @@ def recipe_ingredients(soup):
     # create a list to hold the ingredient data
     ingredients = []
     for li in ingredient_list.find_all("li"):
-        quantity = li.find("span", {"data-ingredient-quantity": True}).text.strip()
-        unit = li.find("span", {"data-ingredient-unit": True}).text.strip()
+        try:
+            quantity = li.find("span", {"data-ingredient-quantity": True}).text.strip()
+        except:
+            quantity = ""
+        try:
+            unit = li.find("span", {"data-ingredient-unit": True}).text.strip()
+        except:
+            unit = ""
         name = li.find("span", {"data-ingredient-name": True}).text.strip()
 
         ingredients.append((quantity, unit, name))
