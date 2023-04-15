@@ -20,9 +20,9 @@ def scrap_recipe(i, recipe_url):
     options.add_argument("--incognito")
 
     driver = webdriver.Chrome(options=options)
-    driver.get(recipe_url)
-    # driver.get("file:///home/esubalew/Desktop/esubalew/python/scraping/test.html")
-    time.sleep(10) # wait for the page to load
+    # driver.get(recipe_url)
+    driver.get("file:///home/esubalew/Desktop/esubalew/python/scraping/test.html")
+    # time.sleep(10) # wait for the page to load
     soup = BeautifulSoup(driver.page_source, "html.parser")
 
 
@@ -66,7 +66,6 @@ def recipe_images(driver, soup):
 
 
     if driver.find_elements(By.CLASS_NAME, 'gallery-photos'):
-        print("more images")
         try:
             link = driver.find_element(By.CLASS_NAME, 'gallery-photos')
             # Click on the "Load More" button until all images are loaded
@@ -84,33 +83,30 @@ def recipe_images(driver, soup):
             div_element = soup.find('div', {'id': 'photo-dialog__page_1-0'})
             img_tags = div_element.find_all('img')
         except NoSuchElementException:
-            return None
+            print("inside gallery-photos exception")
     else:
-        # check photos with 
-        #     1 or 2 photo
-        #     empty photos
         num_of_photos_div = soup.find("div", {"id": "recipe-review-bar_1-0"})
         num_of_photos = num_of_photos_div.find("div", {"id": "recipe-review-bar__photo-count_1-0"}).text.strip()
 
         match = re.search(r'\d+', num_of_photos)
         if match:
             num_photos = int(match.group())
-            print(num_photos)
         else:
             print("No number found in the text.")
-            return "check recipe photos"
 
-        if num_photos == 1:
+        if num_photos == 0:
+            print("No image")
+            return None
+        elif num_photos == 1:
             img_tags = []
             img_tags.append(soup.find("img", {"class": "universal-image__image"}))
 
         elif driver.find_elements(By.ID, 'article__photo-ribbon_1-0'):
-            print("images on row only")
             try:
                 # find all the img tags inside the div with id="article__photo-ribbon_1-0"
                 img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
             except AttributeError:
-                return None
+                print("exception")
 
 
     image_links = []
@@ -273,10 +269,13 @@ def recipe(soup):
 
 ########################################################################################################
 def recipe_rattings(soup):
-
     rating_div = soup.find("div", {"id": "recipe-review-bar_1-0"})
-    rating_points = rating_div.find("div", {"id": "mntl-recipe-review-bar__rating_1-0"}).text.strip()
-    rating_count = rating_div.find("div", {"id": "mntl-recipe-review-bar__rating-count_1-0"}).text.replace('(', '').replace(')', '').strip()
+    try:
+        rating_points = rating_div.find("div", {"id": "mntl-recipe-review-bar__rating_1-0"}).text.strip()
+        rating_count = rating_div.find("div", {"id": "mntl-recipe-review-bar__rating-count_1-0"}).text.replace('(', '').replace(')', '').strip()
+    except AttributeError:
+        rating_points = 0
+        rating_count = 0
     return rating_points, rating_count
 ########################################################################################################
 
@@ -345,4 +344,4 @@ for i in range(1):
 #     # category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
 #     # response_body = category_url.json()
 #     # scrap_recipe(i, response_body['url'])
-    scrap_recipe(i, "https://www.allrecipes.com/recipe/284760/cinnamon-roll-monkey-bread/")
+    scrap_recipe(i, "https://www.allrecipes.com/slow-cooker-overnight-ham-and-cheese-breakfast-casserole-recipe-7372845")
