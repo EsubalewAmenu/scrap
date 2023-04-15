@@ -20,9 +20,9 @@ def scrap_recipe(i, recipe_url):
     options.add_argument("--incognito")
 
     driver = webdriver.Chrome(options=options)
-    # driver.get(recipe_url)
-    driver.get("file:///home/esubalew/Desktop/esubalew/python/scraping/test.html")
-    # time.sleep(10) # wait for the page to load
+    driver.get(recipe_url)
+    # driver.get("file:///home/esubalew/Desktop/esubalew/python/scraping/test.html")
+    time.sleep(10) # wait for the page to load
     soup = BeautifulSoup(driver.page_source, "html.parser")
 
 
@@ -83,6 +83,8 @@ def recipe_images(driver, soup):
             # locate all the img tags in the HTML
             div_element = soup.find('div', {'id': 'photo-dialog__page_1-0'})
             img_tags = div_element.find_all('img')
+            if len(img_tags) == 0:
+                raise NoSuchElementException
         except NoSuchElementException:
             print("inside gallery-photos exception")
     else:
@@ -94,6 +96,8 @@ def recipe_images(driver, soup):
             num_photos = int(match.group())
         else:
             print("No number found in the text.")
+
+        print("numb of img", num_photos)
 
         if num_photos == 0:
             print("No image")
@@ -197,6 +201,18 @@ def recipe_nutritions(soup):
     # print(nutrition_info)
     return nutrition_info
 ########################################################################################################
+# def recipe_steps(soup):
+#     steps_div = soup.find("div", {"id": "recipe__steps_1-0"})
+#     steps_list = steps_div.find_all("li")
+
+#     steps = []
+
+#     for step in steps_list:
+#         step_text = step.p.text.strip()
+#         steps.append(step_text)
+
+#     # print(steps)
+#     return steps
 def recipe_steps(soup):
     steps_div = soup.find("div", {"id": "recipe__steps_1-0"})
     steps_list = steps_div.find_all("li")
@@ -205,9 +221,17 @@ def recipe_steps(soup):
 
     for step in steps_list:
         step_text = step.p.text.strip()
-        steps.append(step_text)
+        if step.find('img'):
+            if step.img.has_attr('data-src'):
+                step_img = step.img['data-src']
+            elif step.img.has_attr('src'):
+                step_img = step.img['src']
+            else:
+                step_img = None
+            steps.append({'text': step_text, 'image': step_img})
+        else:
+            steps.append({'text': step_text, 'image': None})
 
-    # print(steps)
     return steps
 
 ########################################################################################################
@@ -355,7 +379,7 @@ for i in range(1):
 #     # category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
 #     # response_body = category_url.json()
 #     # scrap_recipe(i, response_body['url'])
-    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/banana-split-chia-seed-pudding-recipe-7372050")
+    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/265505/maple-and-brown-sugar-oatmeal/")
 
     print(recipe_data)
 
