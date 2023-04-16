@@ -65,8 +65,37 @@ def scrap_recipe(i, recipe_url):
 ########################################################################################################
 def recipe_images(driver, soup):
 
+    num_of_photos_div = soup.find("div", {"id": "recipe-review-bar_1-0"})
+    num_of_photos = num_of_photos_div.find("div", {"id": "recipe-review-bar__photo-count_1-0"}).text.strip()
 
-    if driver.find_elements(By.CLASS_NAME, 'gallery-photos'):
+    match = re.search(r'\d+', num_of_photos)
+    if match:
+        num_photos = int(match.group())
+    else:
+        print("No number found in the text.")
+        raise NoSuchElementException
+
+    print("numb of img", num_photos)
+    img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
+    print(len(img_tags))
+
+
+    if num_photos == 0:
+        print("No image")
+        return None
+    elif num_photos - len(img_tags) <= 1:
+        img_tags = []
+        try:
+            # find all the img tags inside the div with id="article__photo-ribbon_1-0"
+            img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
+        except AttributeError:
+            print("exception")
+            raise NoSuchElementException
+
+        if num_photos- len(img_tags) == 1:
+            img_tags.insert(0, soup.find("img", {"class": "universal-image__image"}))
+
+    elif driver.find_elements(By.CLASS_NAME, 'gallery-photos'):
         try:
             link = driver.find_element(By.CLASS_NAME, 'gallery-photos')
             # Click on the "Load More" button until all images are loaded
@@ -87,33 +116,33 @@ def recipe_images(driver, soup):
                 raise NoSuchElementException
         except NoSuchElementException:
             print("inside gallery-photos exception")
-    else:
-        num_of_photos_div = soup.find("div", {"id": "recipe-review-bar_1-0"})
-        num_of_photos = num_of_photos_div.find("div", {"id": "recipe-review-bar__photo-count_1-0"}).text.strip()
+    # else:
+    #     num_of_photos_div = soup.find("div", {"id": "recipe-review-bar_1-0"})
+    #     num_of_photos = num_of_photos_div.find("div", {"id": "recipe-review-bar__photo-count_1-0"}).text.strip()
 
-        match = re.search(r'\d+', num_of_photos)
-        if match:
-            num_photos = int(match.group())
-        else:
-            print("No number found in the text.")
-            raise NoSuchElementException
+    #     match = re.search(r'\d+', num_of_photos)
+    #     if match:
+    #         num_photos = int(match.group())
+    #     else:
+    #         print("No number found in the text.")
+    #         raise NoSuchElementException
 
-        print("numb of img", num_photos)
+    #     print("numb of img", num_photos)
 
-        if num_photos == 0:
-            print("No image")
-            return None
-        elif num_photos == 1:
-            img_tags = []
-            img_tags.append(soup.find("img", {"class": "universal-image__image"}))
+    #     if num_photos == 0:
+    #         print("No image")
+    #         return None
+    #     elif num_photos == 1:
+    #         img_tags = []
+    #         img_tags.append(soup.find("img", {"class": "universal-image__image"}))
 
-        elif driver.find_elements(By.ID, 'article__photo-ribbon_1-0'):
-            try:
-                # find all the img tags inside the div with id="article__photo-ribbon_1-0"
-                img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
-            except AttributeError:
-                print("exception")
-                raise NoSuchElementException
+    #     elif driver.find_elements(By.ID, 'article__photo-ribbon_1-0'):
+    #         try:
+    #             # find all the img tags inside the div with id="article__photo-ribbon_1-0"
+    #             img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
+    #         except AttributeError:
+    #             print("exception")
+    #             raise NoSuchElementException
 
 
     image_links = []
@@ -382,7 +411,7 @@ for i in range(1):
 #     # category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
 #     # response_body = category_url.json()
 #     # scrap_recipe(i, response_body['url'])
-    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/265505/maple-and-brown-sugar-oatmeal/")
+    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/14009/muesli/")
 
     # print(recipe_data)
 
