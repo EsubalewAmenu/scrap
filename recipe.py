@@ -16,51 +16,52 @@ from selenium.webdriver.support import expected_conditions as EC
 def scrap_recipe(i, recipe_url):
     print("recipe url is ", i, recipe_url)
 
-    options = Options()
-    options.add_argument("--incognito")
+    # options = Options()
+    # options.add_argument("--incognito")
 
-    driver = webdriver.Chrome(options=options)
-    driver.get(recipe_url)
+    # driver = webdriver.Chrome(options=options)
+    # # driver.get(recipe_url)
     # driver.get("file:///home/esubalew/Desktop/esubalew/python/scraping/test.html")
-    time.sleep(10) # wait for the page to load
-    soup = BeautifulSoup(driver.page_source, "html.parser")
+    # # time.sleep(10) # wait for the page to load
+    # soup = BeautifulSoup(driver.page_source, "html.parser")
 
 
-    category_names = recipe_categories(soup)
-    title, description, recipe_by, published_date = recipe(soup)
-    rating_points, rating_count = recipe_rattings(soup)
-    image_links = recipe_images(driver, soup)
-    prep_time, cook_time, refrigerate_time, additional_time, total_time, servings, recipe_yield = detail_times(soup)
-    ingredients, to_serves = recipe_ingredients(soup)
-    steps = recipe_steps(soup)
-    nutrition_info = recipe_nutritions(soup)
+    # category_names = recipe_categories(soup)
+    # title, description, recipe_by, recipe_by_username, published_date = recipe(soup)
+    # rating_points, rating_count = recipe_rattings(soup)
+    # image_links = recipe_images(driver, soup)
+    # prep_time, cook_time, refrigerate_time, additional_time, total_time, servings, recipe_yield = detail_times(soup)
+    # ingredients, to_serves = recipe_ingredients(soup)
+    # steps = recipe_steps(soup)
+    # nutrition_info = recipe_nutritions(soup)
 
-    full_recipe_dict = {}
-    full_recipe_dict['slug'] =  recipe_url[len("https://www.allrecipes.com/recipe/"):-1]
-    full_recipe_dict['category_names'] = category_names
-    full_recipe_dict['title'] = title
-    full_recipe_dict['description'] = description
-    full_recipe_dict['recipe_by'] = recipe_by
-    full_recipe_dict['published_date'] = published_date
-    full_recipe_dict['rating_points'] = rating_points
-    full_recipe_dict['rating_count'] = rating_count
-    full_recipe_dict['image_links'] = image_links
-    full_recipe_dict['prep_time'] = prep_time
-    full_recipe_dict['cook_time'] = cook_time
-    full_recipe_dict['refrigerate_time'] = refrigerate_time
-    full_recipe_dict['additional_time'] = additional_time
-    full_recipe_dict['total_time'] = total_time
-    full_recipe_dict['servings'] = servings
-    full_recipe_dict['recipe_yield'] = recipe_yield
-    full_recipe_dict['ingredients'] = ingredients
-    full_recipe_dict['steps'] = steps
-    full_recipe_dict['nutrition_info'] = nutrition_info
+    # full_recipe_dict = {}
+    # full_recipe_dict['slug'] =  recipe_url[len("https://www.allrecipes.com/recipe/"):-1]
+    # full_recipe_dict['category_names'] = category_names
+    # full_recipe_dict['title'] = title
+    # full_recipe_dict['description'] = description
+    # full_recipe_dict['recipe_by'] = recipe_by
+    # full_recipe_dict['recipe_by_username'] = recipe_by_username
+    # full_recipe_dict['published_date'] = published_date
+    # full_recipe_dict['rating_points'] = rating_points
+    # full_recipe_dict['rating_count'] = rating_count
+    # full_recipe_dict['image_links'] = image_links
+    # full_recipe_dict['prep_time'] = prep_time
+    # full_recipe_dict['cook_time'] = cook_time
+    # full_recipe_dict['refrigerate_time'] = refrigerate_time
+    # full_recipe_dict['additional_time'] = additional_time
+    # full_recipe_dict['total_time'] = total_time
+    # full_recipe_dict['servings'] = servings
+    # full_recipe_dict['recipe_yield'] = recipe_yield
+    # full_recipe_dict['ingredients'] = ingredients
+    # full_recipe_dict['steps'] = steps
+    # full_recipe_dict['nutrition_info'] = nutrition_info
 
-    # # full_recipe_dict = {'slug': '81321/restaurant-style-sweet-potato-casserole', 'category_names': ['Side Dish', 'Vegetables', 'Sweet Potatoes', 'Sweet Potatoes With Marshmallow Recipes'], 'title': 'Restaurant-Style Sweet Potato Casserole', 'description': "The brown sugar, cream, marshmallows, and oatmeal streusel give this casserole a taste similar to sweet potato pie, yet the dish goes great alongside meals as varied as low-key chicken dinners or festive holiday banquets. And the great part is, if you're planning to use this for entertaining, you can make everything but the streusel a day ahead so you won't be stressed at crunch time.", 'recipe_by': 'kelcampbell', 'published_date': '2020-03-04 00:00:00', 'rating_points': '4.9', 'rating_count': '8', 'image_links': ['https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fpublic-assets-ucg.meredithcorp.io%2F4df8e36df71f154b56a7489ffc166973%2F6071232.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F6027716.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F4143066.jpg&q=60&c=sc&orient=true&poi=auto'], 'prep_time': '20 mins', 'cook_time': '2 hrs 10 mins', 'additional_time': None, 'total_time': '2 hrs 30 mins', 'servings': '12', 'recipe_yield': '12 servings', 'ingredients': [('2 ½', 'pounds', 'sweet potatoes'), ('1', 'teaspoon', 'vegetable oil, or as needed'), ('¾', 'cup', 'dark brown sugar'), ('½', 'cup', 'heavy whipping cream'), ('¼', 'cup', 'melted butter'), ('¼', 'teaspoon', 'ground cinnamon'), ('¼', 'teaspoon', 'salt')], 'steps': ['Preheat oven to 400 degrees F (200 degrees C).', 'Rub the skin of each sweet potato with vegetable oil; place potatoes on a baking sheet.', 'Bake in the preheated oven until tender, about 1 hour; remove and cool slightly. Reduce oven temperature to 350 degrees F (175 degrees C).', 'When sweet potatoes are cool enough to handle, scrape flesh into a large bowl; discard skins. Beat sweet potatoes with an electric mixer until smooth.', 'Measure 6 cups of mashed sweet potato into a large bowl; beat in 3/4 cup brown sugar, cream, 1/4 cup melted butter, 1/4 teaspoon cinnamon, and salt. Pour sweet potato mixture into an 8x8-inch baking dish.', 'Place the rolled oats into the bowl of a food processor or blender, and pulse until oats are finely ground. Place oats, 2 tablespoons brown sugar, flour, and 1/8 teaspoon cinnamon into a bowl. Cut 2 tablespoons cold butter into the oat mixture with a pastry blender or fork until crumbly; sprinkle evenly over sweet potato mixture.', 'Bake in the preheated oven until sweet potatoes are heated through and oatmeal streusel is lightly browned, 70 to 80 minutes. Remove from oven, sprinkle immediately with marshmallows, and let stand until marshmallows are melted, about 10 minutes.'], 'nutrition_info': [['Calories', '269', None], ['Total Fat', '10g', '13%'], ['Saturated Fat', '6g', '31%'], ['Cholesterol', '29mg', '10%'], ['Sodium', '340mg', '15%'], ['Total Carbohydrate', '43g', '16%'], ['Dietary Fiber', '3g', '12%'], ['Total Sugars', '29g', None], ['Protein', '3g', None], ['Vitamin C', '19mg', '93%'], ['Calcium', '58mg', '4%'], ['Iron', '1mg', '5%'], ['Potassium', '485mg', '10%']]}
+    full_recipe_dict = {'slug': '14009/muesli', 'category_names': ['Breakfast and Brunch', 'Cereals', 'Oatmeal Recipes'], 'title': 'Maple and Brown Sugar Oatmeal', 'description': 'Maple and brown sugar oatmeal is super easy to make. I was tired of buying the packages, so I decided to experiment and this is it!', 'recipe_by': 'Brandy Despang', 'recipe_by_username': 'Brandy Despang', 'published_date': '2023-02-07 00:00:00', 'rating_points': '4.7', 'rating_count': '30', 'image_links': ['https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fpublic-assets-ucg.meredithcorp.io%2F67562dffead66ffcd1a4febf6f4d9ffc%2F6414820.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fpublic-assets-ucg.meredithcorp.io%2F67562dffead66ffcd1a4febf6f4d9ffc%2F6414820.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5477640.jpg&q=60&c=sc&orient=true&poi=auto'], 'prep_time': '2 mins', 'cook_time': '6 mins', 'refrigerate_time': None, 'additional_time': '2 mins', 'total_time': '10 mins', 'servings': '1', 'recipe_yield': None, 'ingredients': [('1 ½', 'cups', 'water'), ('¾', 'cup', 'quick-cooking oats'), ('1', 'tablespoon', 'packed dark brown sugar'), ('1', 'tablespoon', 'maple syrup')], 'steps': [{'text': 'Gather all ingredients.', 'image': 'https://www.allrecipes.com/thmb/cvDOk5x1LU15K8xJlqp8Mf_TJ4Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/265505-maple-and-brown-sugar-oatmeal-DDMFS-step1-3203-2ed565118c0947c495c7cff5da02e868.jpg'}, {'text': 'Bring water to a boil in a small pot. Add oats and cook, stirring, for 1 minute.', 'image': 'https://www.allrecipes.com/thmb/Vmtz9-0bU4KMfw4HYNJiSiKpYT4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/265505-maple-and-brown-sugar-oatmeal-DDMFS-step2-3212-fb9872d9f81643b084e6adff771b3a40.jpg'}, {'text': 'Remove from heat and stir in brown sugar and maple syrup. Let sit until desired thickness is reached, 2 to 3 minutes.', 'image': 'https://www.allrecipes.com/thmb/lKvn1SR3h9aI0OOxsuQZ4AO9Y9I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/265505-maple-and-brown-sugar-oatmeal-DDMFS-step4-3224-7f931f7309c54fd5bc3f2fd57a2e70ac.jpg'}], 'nutrition_info': [['Calories', '334', None], ['Total Fat', '4g', '5'], ['Saturated Fat', '1g', '4'], ['Sodium', '20mg', '1'], ['Total Carbohydrate', '68g', '25'], ['Dietary Fiber', '6g', '22'], ['Total Sugars', '26g', None], ['Protein', '8g', None], ['Calcium', '67mg', '5'], ['Iron', '3mg', '16'], ['Potassium', '282mg', '6']]}
     # print(full_recipe_dict)
 
 
-    driver.quit()
+    # driver.quit()
     return full_recipe_dict
 ########################################################################################################
 def recipe_images(driver, soup):
@@ -169,22 +170,6 @@ def recipe_images(driver, soup):
         image_links[i] = new_url
     # print(image_links)
     return image_links
-########################################################################################################
-def add_recipe_to_db(url):
-    data = {'url': url}
-
-    headers = {
-        'username': 'esubalew11@gmail.com',
-        'password': '105672864563817565',
-        'login_with': 'google'
-    }
-
-    return requests.post("http://localhost:8080/api/ds_her/v1/category/add",
-        # proxies={'http': '222.255.169.74:8080'},
-        timeout=15, json = data, headers=headers, verify=certifi.where())
-
-
-
 ########################################################################################################
 def recipe_nutritions(soup):
     nutrition_info = []#{}
@@ -317,17 +302,12 @@ def recipe_ingredients(soup):
 def recipe(soup):
     title = soup.select_one(".article-post-header h1").text.strip()
     description = soup.select_one(".article-post-header p").text.strip()
-    recipe_by = soup.select_one(".mntl-attribution__item-name").text.strip()
-    # published_date = soup.select_one(".mntl-attribution__item-date").text.strip().replace("Updated on ", "")
+    recipe_by = soup.select_one(".mntl-attribution__item-name").text.strip() 
+    recipe_by_username = soup.select_one(".mntl-attribution__item-name").text.strip() 
     date_text = soup.select_one(".mntl-attribution__item-date").text.strip()
-    # replace "Updated on" or "Published on" with an empty string
     published_date = convert_date(re.sub(r'(Updated|Published) on ', '', date_text))
 
-    # print(title)
-    # print(description)
-    # print(recipe_by)
-    # print(published_date)
-    return title, description, recipe_by, published_date
+    return title, description, recipe_by, recipe_by_username,published_date
 ########################################################################################################
 
 ########################################################################################################
@@ -350,7 +330,9 @@ def recipe_categories(soup):
 
     breadcrumbs = soup.find("ul", {"id": "breadcrumbs__list_1-0"})
     for crumb in breadcrumbs.find_all("a"):
-        category_names.append(crumb.text)
+        print( "is '" + crumb.text+"'")
+        if crumb.text != "Recipes":
+            category_names.append(crumb.text)
 
     return category_names
 ########################################################################################################
@@ -405,10 +387,17 @@ headers = {
         'login_with': 'google'
     }
 
-# print(response_body['url'])
+########################################################################################################
+def add_recipe_to_db(recipe_data):
+    # data = {'url': url}
+
+    return requests.post("http://localhost:8080/api/ds_her/v1/recipe/add",
+        timeout=15, json = recipe_data, headers=headers, verify=certifi.where())
+
+
+
 
 for i in range(1):
-#     # category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
 #     # response_body = category_url.json()
 #     # scrap_recipe(i, response_body['url'])
     recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/14009/muesli/")
@@ -416,7 +405,10 @@ for i in range(1):
     # print(recipe_data)
 
     if recipe_data['image_links']:
-        print(recipe_data)
+        # print(recipe_data)
+        server_response = add_recipe_to_db(recipe_data)
+        print( server_response )
+        print( server_response.text )
     else:
         print("jumped")
 
