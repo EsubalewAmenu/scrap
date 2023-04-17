@@ -16,52 +16,52 @@ from selenium.webdriver.support import expected_conditions as EC
 def scrap_recipe(i, recipe_url):
     print("recipe url is ", i, recipe_url)
 
-    # options = Options()
-    # options.add_argument("--incognito")
+    options = Options()
+    options.add_argument("--incognito")
 
-    # driver = webdriver.Chrome(options=options)
-    # # driver.get(recipe_url)
+    driver = webdriver.Chrome(options=options)
+    driver.get(recipe_url)
     # driver.get("file:///home/esubalew/Desktop/esubalew/python/scraping/test.html")
-    # # time.sleep(10) # wait for the page to load
-    # soup = BeautifulSoup(driver.page_source, "html.parser")
+    time.sleep(10) # wait for the page to load
+    soup = BeautifulSoup(driver.page_source, "html.parser")
 
 
-    # category_names = recipe_categories(soup)
-    # title, description, recipe_by, recipe_by_username, published_date = recipe(soup)
-    # rating_points, rating_count = recipe_rattings(soup)
-    # image_links = recipe_images(driver, soup)
-    # prep_time, cook_time, refrigerate_time, additional_time, total_time, servings, recipe_yield = detail_times(soup)
-    # ingredients, to_serves = recipe_ingredients(soup)
-    # steps = recipe_steps(soup)
-    # nutrition_info = recipe_nutritions(soup)
+    category_names = recipe_categories(soup)
+    title, description, recipe_by, recipe_by_username, published_date = recipe(soup)
+    rating_points, rating_count = recipe_rattings(soup)
+    image_links = recipe_images(driver, soup)
+    prep_time, cook_time, refrigerate_time, additional_time, total_time, servings, recipe_yield = detail_times(soup)
+    ingredients, to_serves = recipe_ingredients(soup)
+    steps = recipe_steps(soup)
+    nutrition_info = recipe_nutritions(soup)
 
-    # full_recipe_dict = {}
-    # full_recipe_dict['slug'] =  recipe_url[len("https://www.allrecipes.com/recipe/"):-1]
-    # full_recipe_dict['category_names'] = category_names
-    # full_recipe_dict['title'] = title
-    # full_recipe_dict['description'] = description
-    # full_recipe_dict['recipe_by'] = recipe_by
-    # full_recipe_dict['recipe_by_username'] = recipe_by_username
-    # full_recipe_dict['published_date'] = published_date
-    # full_recipe_dict['rating_points'] = rating_points
-    # full_recipe_dict['rating_count'] = rating_count
-    # full_recipe_dict['image_links'] = image_links
-    # full_recipe_dict['prep_time'] = prep_time
-    # full_recipe_dict['cook_time'] = cook_time
-    # full_recipe_dict['refrigerate_time'] = refrigerate_time
-    # full_recipe_dict['additional_time'] = additional_time
-    # full_recipe_dict['total_time'] = total_time
-    # full_recipe_dict['servings'] = servings
-    # full_recipe_dict['recipe_yield'] = recipe_yield
-    # full_recipe_dict['ingredients'] = ingredients
-    # full_recipe_dict['steps'] = steps
-    # full_recipe_dict['nutrition_info'] = nutrition_info
+    full_recipe_dict = {}
+    full_recipe_dict['slug'] =  recipe_url[len("https://www.allrecipes.com/recipe/"):-1]
+    full_recipe_dict['category_names'] = category_names
+    full_recipe_dict['title'] = title
+    full_recipe_dict['description'] = description
+    full_recipe_dict['recipe_by'] = recipe_by
+    full_recipe_dict['recipe_by_username'] = recipe_by_username
+    full_recipe_dict['published_date'] = published_date
+    full_recipe_dict['rating_points'] = rating_points
+    full_recipe_dict['rating_count'] = rating_count
+    full_recipe_dict['image_links'] = image_links
+    full_recipe_dict['prep_time'] = prep_time
+    full_recipe_dict['cook_time'] = cook_time
+    full_recipe_dict['refrigerate_time'] = refrigerate_time
+    full_recipe_dict['additional_time'] = additional_time
+    full_recipe_dict['total_time'] = total_time
+    full_recipe_dict['servings'] = servings
+    full_recipe_dict['recipe_yield'] = recipe_yield
+    full_recipe_dict['ingredients'] = ingredients
+    full_recipe_dict['steps'] = steps
+    full_recipe_dict['nutrition_info'] = nutrition_info
 
-    full_recipe_dict = {'slug': '14009/muesli', 'category_names': ['Breakfast and Brunch', 'Cereals', 'Oatmeal Recipes'], 'title': 'Maple and Brown Sugar Oatmeal', 'description': 'Maple and brown sugar oatmeal is super easy to make. I was tired of buying the packages, so I decided to experiment and this is it!', 'recipe_by': 'Brandy Despang', 'recipe_by_username': 'Brandy Despang', 'published_date': '2023-02-07 00:00:00', 'rating_points': '4.7', 'rating_count': '30', 'image_links': ['https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fpublic-assets-ucg.meredithcorp.io%2F67562dffead66ffcd1a4febf6f4d9ffc%2F6414820.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fpublic-assets-ucg.meredithcorp.io%2F67562dffead66ffcd1a4febf6f4d9ffc%2F6414820.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5477640.jpg&q=60&c=sc&orient=true&poi=auto'], 'prep_time': '2 mins', 'cook_time': '6 mins', 'refrigerate_time': None, 'additional_time': '2 mins', 'total_time': '10 mins', 'servings': '1', 'recipe_yield': None, 'ingredients': [('1 ½', 'cups', 'water'), ('¾', 'cup', 'quick-cooking oats'), ('1', 'tablespoon', 'packed dark brown sugar'), ('1', 'tablespoon', 'maple syrup')], 'steps': [{'text': 'Gather all ingredients.', 'image': 'https://www.allrecipes.com/thmb/cvDOk5x1LU15K8xJlqp8Mf_TJ4Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/265505-maple-and-brown-sugar-oatmeal-DDMFS-step1-3203-2ed565118c0947c495c7cff5da02e868.jpg'}, {'text': 'Bring water to a boil in a small pot. Add oats and cook, stirring, for 1 minute.', 'image': 'https://www.allrecipes.com/thmb/Vmtz9-0bU4KMfw4HYNJiSiKpYT4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/265505-maple-and-brown-sugar-oatmeal-DDMFS-step2-3212-fb9872d9f81643b084e6adff771b3a40.jpg'}, {'text': 'Remove from heat and stir in brown sugar and maple syrup. Let sit until desired thickness is reached, 2 to 3 minutes.', 'image': 'https://www.allrecipes.com/thmb/lKvn1SR3h9aI0OOxsuQZ4AO9Y9I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/265505-maple-and-brown-sugar-oatmeal-DDMFS-step4-3224-7f931f7309c54fd5bc3f2fd57a2e70ac.jpg'}], 'nutrition_info': [['Calories', '334', None], ['Total Fat', '4g', '5'], ['Saturated Fat', '1g', '4'], ['Sodium', '20mg', '1'], ['Total Carbohydrate', '68g', '25'], ['Dietary Fiber', '6g', '22'], ['Total Sugars', '26g', None], ['Protein', '8g', None], ['Calcium', '67mg', '5'], ['Iron', '3mg', '16'], ['Potassium', '282mg', '6']]}
+    # full_recipe_dict = {'slug': '14009/muesli', 'category_names': ['Breakfast and Brunch', 'Cereals'], 'title': 'Muesli', 'description': "This muesli recipe is a nutritious and delicious breakfast cereal. Use any dried fruit you desire. You can also use almonds in place of walnuts if you like. It's wonderful served in bowls with milk and fresh berries or sliced fresh fruit.", 'recipe_by': 'Allrecipes Member', 'recipe_by_username': 'Allrecipes Member', 'published_date': '2022-08-25 00:00:00', 'rating_points': '4.8', 'rating_count': '190', 'image_links': ['https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F9436232.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F9039483.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fpublic-assets-ucg.meredithcorp.io%2F15d808635b2950a8fbd9a9e3831368f7%2F6253825.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F3589497.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F3453282.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F3803001.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F1126784.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F888014.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F779199.jpg&q=60&c=sc&orient=true&poi=auto', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F779197.jpg&q=60&c=sc&orient=true&poi=auto'], 'prep_time': '10 mins', 'cook_time': None, 'refrigerate_time': None, 'additional_time': None, 'total_time': '10 mins', 'servings': '16', 'recipe_yield': '8 cups', 'ingredients': [('4 ½', 'cups', 'rolled oats'), ('1', 'cup', 'raisins'), ('½', 'cup', 'toasted wheat germ'), ('½', 'cup', 'wheat bran'), ('½', 'cup', 'oat bran'), ('½', 'cup', 'chopped walnuts'), ('¼', 'cup', 'packed brown sugar'), ('¼', 'cup', 'raw sunflower seeds')], 'steps': [{'text': 'Combine oats, raisins, wheat germ, wheat bran, oat bran, walnuts, brown sugar, and sunflower seeds in a large bowl; mix well. Store muesli in an airtight container at room temperature for up to 2 months.', 'image': 'https://www.allrecipes.com/thmb/cWQJSNLA0HcNt7HkYPVi7MoXpHQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/888014-f94dab3b95ce41ebad1fa04b5539f804.jpg'}], 'nutrition_info': [['Calories', '188', None], ['Total Fat', '6g', '7'], ['Saturated Fat', '1g', '4'], ['Sodium', '4mg', '0'], ['Total Carbohydrate', '32g', '12'], ['Dietary Fiber', '5g', '17'], ['Total Sugars', '9g', None], ['Protein', '6g', None], ['Vitamin C', '1mg', '3'], ['Calcium', '29mg', '2'], ['Iron', '2mg', '12'], ['Potassium', '257mg', '5']]}
     # print(full_recipe_dict)
 
 
-    # driver.quit()
+    driver.quit()
     return full_recipe_dict
 ########################################################################################################
 def recipe_images(driver, soup):
@@ -76,10 +76,7 @@ def recipe_images(driver, soup):
         print("No number found in the text.")
         raise NoSuchElementException
 
-    print("numb of img", num_photos)
     img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
-    print(len(img_tags))
-
 
     if num_photos == 0:
         print("No image")
@@ -90,11 +87,12 @@ def recipe_images(driver, soup):
             # find all the img tags inside the div with id="article__photo-ribbon_1-0"
             img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
         except AttributeError:
-            print("exception")
-            raise NoSuchElementException
+            if num_photos != 1:
+                print("exception")
+                raise NoSuchElementException
 
         if num_photos- len(img_tags) == 1:
-            img_tags.insert(0, soup.find("img", {"class": "universal-image__image"}))
+            img_tags.insert(0, soup.find("img", {"class": "primary-image__image"}))
 
     elif driver.find_elements(By.CLASS_NAME, 'gallery-photos'):
         try:
@@ -117,34 +115,6 @@ def recipe_images(driver, soup):
                 raise NoSuchElementException
         except NoSuchElementException:
             print("inside gallery-photos exception")
-    # else:
-    #     num_of_photos_div = soup.find("div", {"id": "recipe-review-bar_1-0"})
-    #     num_of_photos = num_of_photos_div.find("div", {"id": "recipe-review-bar__photo-count_1-0"}).text.strip()
-
-    #     match = re.search(r'\d+', num_of_photos)
-    #     if match:
-    #         num_photos = int(match.group())
-    #     else:
-    #         print("No number found in the text.")
-    #         raise NoSuchElementException
-
-    #     print("numb of img", num_photos)
-
-    #     if num_photos == 0:
-    #         print("No image")
-    #         return None
-    #     elif num_photos == 1:
-    #         img_tags = []
-    #         img_tags.append(soup.find("img", {"class": "universal-image__image"}))
-
-    #     elif driver.find_elements(By.ID, 'article__photo-ribbon_1-0'):
-    #         try:
-    #             # find all the img tags inside the div with id="article__photo-ribbon_1-0"
-    #             img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
-    #         except AttributeError:
-    #             print("exception")
-    #             raise NoSuchElementException
-
 
     image_links = []
 
@@ -330,7 +300,6 @@ def recipe_categories(soup):
 
     breadcrumbs = soup.find("ul", {"id": "breadcrumbs__list_1-0"})
     for crumb in breadcrumbs.find_all("a"):
-        print( "is '" + crumb.text+"'")
         if crumb.text != "Recipes":
             category_names.append(crumb.text)
 
@@ -400,7 +369,7 @@ def add_recipe_to_db(recipe_data):
 for i in range(1):
 #     # response_body = category_url.json()
 #     # scrap_recipe(i, response_body['url'])
-    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/14009/muesli/")
+    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/276843/the-real-rum-runner/")
 
     # print(recipe_data)
 
