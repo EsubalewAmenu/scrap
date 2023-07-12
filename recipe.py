@@ -76,12 +76,13 @@ def recipe_images(driver, soup):
         print("No number found in the text.")
         raise NoSuchElementException
 
-    img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
-
     if num_photos == 0:
         print("No image")
         return None
-    elif num_photos - len(img_tags) <= 1:
+
+    img_tags = soup.find("div", {"id": "article__photo-ribbon_1-0"}).find_all("img")
+
+    if num_photos - len(img_tags) <= 1:
         img_tags = []
         try:
             # find all the img tags inside the div with id="article__photo-ribbon_1-0"
@@ -93,6 +94,8 @@ def recipe_images(driver, soup):
 
         if num_photos- len(img_tags) == 1:
             img_tags.insert(0, soup.find("img", {"class": "primary-image__image"}))
+            if len(img_tags) == 0:
+                img_tags.insert(0, soup.find("img", {"class": "universal-image__image"}))
 
     elif driver.find_elements(By.CLASS_NAME, 'gallery-photos'):
         try:
@@ -142,51 +145,54 @@ def recipe_images(driver, soup):
     return image_links
 ########################################################################################################
 def recipe_nutritions(soup):
-    nutrition_info = []#{}
+    try:
+        nutrition_info = []#{}
 
-    ############## Calories #######################
-    fullnutrient = []
-    calories = soup.find('tr', {'class': 'mntl-nutrition-facts-label__calories'})
-    calories_amount = calories.find_all('span')[1].text.strip()
-    # print( f"Calories {calories_amount}")
-
-    fullnutrient.append( "Calories" )
-    fullnutrient.append( calories_amount )
-    fullnutrient.append( None )
-
-    nutrition_info.append(fullnutrient)
-    ############## Calories end ####################
-
-    table_body = soup.find("tbody", class_="mntl-nutrition-facts-label__table-body")
-    rows = table_body.find_all("tr")
-    
-    for row in rows:
-        columns = row.find_all("td")
-        nutrient = columns[0].text.strip()
-    
+        ############## Calories #######################
         fullnutrient = []
+        calories = soup.find('tr', {'class': 'mntl-nutrition-facts-label__calories'})
+        calories_amount = calories.find_all('span')[1].text.strip()
+        # print( f"Calories {calories_amount}")
 
-        if nutrient != "% Daily Value *":
+        fullnutrient.append( "Calories" )
+        fullnutrient.append( calories_amount )
+        fullnutrient.append( None )
 
-            # print(nutrient)
-            nutrient_name, nutrient_value = nutrient.split("\n")
-            # print(nutrient_name)
-            # print(nutrient_value)
-            try:
-                daily_value = columns[1].text.strip()
-                daily_value = daily_value.replace('%', '')
-            except:
-                daily_value = None
+        nutrition_info.append(fullnutrient)
+        ############## Calories end ####################
 
-            fullnutrient.append( nutrient_name )
-            fullnutrient.append( nutrient_value )
-            fullnutrient.append( daily_value )
+        table_body = soup.find("tbody", class_="mntl-nutrition-facts-label__table-body")
+        rows = table_body.find_all("tr")
+        
+        for row in rows:
+            columns = row.find_all("td")
+            nutrient = columns[0].text.strip()
+        
+            fullnutrient = []
 
-            nutrition_info.append(fullnutrient)
-            # nutrition_info[nutrient] = daily_value
+            if nutrient != "% Daily Value *":
 
-    # print(nutrition_info)
-    return nutrition_info
+                # print(nutrient)
+                nutrient_name, nutrient_value = nutrient.split("\n")
+                # print(nutrient_name)
+                # print(nutrient_value)
+                try:
+                    daily_value = columns[1].text.strip()
+                    daily_value = daily_value.replace('%', '')
+                except:
+                    daily_value = None
+
+                fullnutrient.append( nutrient_name )
+                fullnutrient.append( nutrient_value )
+                fullnutrient.append( daily_value )
+
+                nutrition_info.append(fullnutrient)
+                # nutrition_info[nutrient] = daily_value
+
+        # print(nutrition_info)
+        return nutrition_info
+    except:
+        return None
 ########################################################################################################
 # def recipe_steps(soup):
 #     steps_div = soup.find("div", {"id": "recipe__steps_1-0"})
@@ -360,25 +366,36 @@ headers = {
 def add_recipe_to_db(recipe_data):
     # data = {'url': url}
 
-    return requests.post("http://localhost:8080/api/ds_her/v1/recipe/add",
+    return requests.post("https://dashencon.com/recipes/api/ds_her/v1/recipe/add",
         timeout=15, json = recipe_data, headers=headers, verify=certifi.where())
 
 
 
 
-for i in range(1):
-#     # response_body = category_url.json()
-#     # scrap_recipe(i, response_body['url'])
-    recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/276843/the-real-rum-runner/")
+for i in range(5000):
+
+    recipe_url =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/get", timeout=15, headers=headers, verify=certifi.where())
+    response_body = recipe_url.json()
+    print(response_body)
+    recipe_data = scrap_recipe(i, response_body['url'])
+    # recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/44045/irish-coffee/")
 
     # print(recipe_data)
 
-    if recipe_data['image_links']:
+    if not recipe_data['image_links']:
+        print("No image - jumped")
+        copy_response =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/scraped/"+response_body['id'], timeout=15, headers=headers, verify=certifi.where())
+    elif not recipe_data['nutrition_info']:
+        print("No nutrition info - jumped")
+        copy_response =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/scraped/"+response_body['id'], timeout=15, headers=headers, verify=certifi.where())
+    else:
         # print(recipe_data)
         server_response = add_recipe_to_db(recipe_data)
-        print( server_response )
+        print( "server response status code ", server_response.status_code )
         print( server_response.text )
-    else:
-        print("jumped")
+        if(server_response.status_code):
+            print("id is " , response_body['id'])
+            copy_response =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/scraped/"+response_body['id'], timeout=15, headers=headers, verify=certifi.where())
+            print("backing up ", copy_response.json())
 
     time.sleep(3)
