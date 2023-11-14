@@ -3,6 +3,13 @@ import requests
 import time
 import certifi
 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
 ########################################################################################################
 def add_category_url_to_db(url):
     data = {'url': url}
@@ -19,18 +26,30 @@ def add_category_url_to_db(url):
 
 ########################################################################################################
 def scrap_urls(parent_urls):
-    for parent_url in parent_urls:
-        print("parent url is ", parent_url)
-        source=requests.get(parent_url,
-         verify=certifi.where(),
-            # proxies={'http': '222.255.169.74:8080'},
-            timeout=5)
-        soup=BeautifulSoup(source.text,'html')
+    for index, parent_url in enumerate(parent_urls):
+        print(index, parent_url)
+        
+
+        options = Options()
+        options.add_argument("--incognito")
+
+        driver = webdriver.Chrome(options=options)
+        driver.get(parent_url)
+        # driver.get("file:///home/esubalew/Desktop/esubalew/python/scraping/test.html")
+        time.sleep(10) # wait for the page to load
+        soup = BeautifulSoup(driver.page_source, "html.parser")
+
+
+        # source=requests.get(parent_url,
+        #  verify=certifi.where(),
+        #     # proxies={'http': '222.255.169.74:8080'},
+        #     timeout=5)
+        # soup=BeautifulSoup(source.text,'html')
 
         # find all <a> tags that have a "href" attribute starting with "https://www.allrecipes.com/recipes/"
         links = [a['href'] for a in soup.find_all('a', href=lambda href: href and href.startswith('https://www.allrecipes.com/recipes/'))]
 
-        # print(links)
+        print(links)
         for link in links:
             category_url = link[len('https://www.allrecipes.com/recipes/'):].strip()
             if category_url:
@@ -40,7 +59,7 @@ def scrap_urls(parent_urls):
         # print("total links ", len(links))
 ########################################################################################################33
 
-parent_urls = {
+parent_urls = [
 "https://www.allrecipes.com/recipes/215/salad/pasta-salad/",
 "https://www.allrecipes.com/recipes/15328/main-dish/savory-pies/pasties/",
 "https://www.allrecipes.com/recipes/346/bread/pastries/",
@@ -184,7 +203,7 @@ parent_urls = {
 "https://www.allrecipes.com/recipes/339/bread/yeast-bread/",
 "https://www.allrecipes.com/recipes/550/pasta-and-noodles/pasta-by-shape/ziti/",
 "https://www.allrecipes.com/recipes/348/bread/quick-bread/zucchini-bread/"
-}
+]
 scrap_urls(parent_urls)
 
 # print(add_category_url_to_db("85/holidays-and-events/"))

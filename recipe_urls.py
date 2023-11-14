@@ -53,5 +53,17 @@ headers = {
 
 for i in range(100):
     category_url =  requests.get("http://localhost:8080/api/ds_her/v1/category/get", timeout=15, headers=headers, verify=certifi.where())
+
+    # Check if the response status code is 200
+    if category_url.status_code == 200:
+        try:
+            response_body = category_url.json()
+            print(response_body)
+        except Exception as json_error:
+            print(f"Error decoding JSON: {json_error}")
+            print("Response content:", category_url.text)
+
+            
+    print(category_url)
     response_body = category_url.json()
     scrap_urls(i, response_body['url'])

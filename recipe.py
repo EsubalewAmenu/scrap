@@ -1,5 +1,4 @@
 from urllib.parse import urlparse, urlunparse
-from selenium import webdriver
 from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
@@ -8,6 +7,7 @@ import time
 import re
 
 
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
@@ -24,8 +24,16 @@ def scrap_recipe(i, recipe_url):
     # driver.get("file:///home/esubalew/Desktop/esubalew/python/scraping/test.html")
     time.sleep(10) # wait for the page to load
     soup = BeautifulSoup(driver.page_source, "html.parser")
+    
+    full_data = prepare_the_recipe(driver, recipe_url, soup)
+
+    driver.quit()
+
+    return full_data
 
 
+
+def prepare_the_recipe(driver, recipe_url, soup):
     category_names = recipe_categories(soup)
     title, description, recipe_by, recipe_by_username, published_date = recipe(soup)
     rating_points, rating_count = recipe_rattings(soup)
@@ -61,7 +69,6 @@ def scrap_recipe(i, recipe_url):
     # print(full_recipe_dict)
 
 
-    driver.quit()
     return full_recipe_dict
 ########################################################################################################
 def recipe_images(driver, soup):
@@ -371,31 +378,32 @@ def add_recipe_to_db(recipe_data):
 
 
 
+recipe_data = scrap_recipe(1, "https://www.allrecipes.com/recipe/9111/cranberry-sauce/")
+print(recipe_data)
+# for i in range(5000):
 
-for i in range(5000):
+#     recipe_url =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/get", timeout=15, headers=headers, verify=certifi.where())
+#     response_body = recipe_url.json()
+#     print(response_body)
+#     recipe_data = scrap_recipe(i, response_body['url'])
+#     # recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/44045/irish-coffee/")
 
-    recipe_url =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/get", timeout=15, headers=headers, verify=certifi.where())
-    response_body = recipe_url.json()
-    print(response_body)
-    recipe_data = scrap_recipe(i, response_body['url'])
-    # recipe_data = scrap_recipe(i, "https://www.allrecipes.com/recipe/44045/irish-coffee/")
+#     # print(recipe_data)
 
-    # print(recipe_data)
+#     if not recipe_data['image_links']:
+#         print("No image - jumped")
+#         copy_response =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/scraped/"+response_body['id'], timeout=15, headers=headers, verify=certifi.where())
+#     elif not recipe_data['nutrition_info']:
+#         print("No nutrition info - jumped")
+#         copy_response =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/scraped/"+response_body['id'], timeout=15, headers=headers, verify=certifi.where())
+#     else:
+#         # print(recipe_data)
+#         server_response = add_recipe_to_db(recipe_data)
+#         print( "server response status code ", server_response.status_code )
+#         print( server_response.text )
+#         if(server_response.status_code):
+#             print("id is " , response_body['id'])
+#             copy_response =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/scraped/"+response_body['id'], timeout=15, headers=headers, verify=certifi.where())
+#             print("backing up ", copy_response.json())
 
-    if not recipe_data['image_links']:
-        print("No image - jumped")
-        copy_response =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/scraped/"+response_body['id'], timeout=15, headers=headers, verify=certifi.where())
-    elif not recipe_data['nutrition_info']:
-        print("No nutrition info - jumped")
-        copy_response =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/scraped/"+response_body['id'], timeout=15, headers=headers, verify=certifi.where())
-    else:
-        # print(recipe_data)
-        server_response = add_recipe_to_db(recipe_data)
-        print( "server response status code ", server_response.status_code )
-        print( server_response.text )
-        if(server_response.status_code):
-            print("id is " , response_body['id'])
-            copy_response =  requests.get("http://localhost:8080/api/ds_her/v1/recipe/url/scraped/"+response_body['id'], timeout=15, headers=headers, verify=certifi.where())
-            print("backing up ", copy_response.json())
-
-    time.sleep(3)
+#     time.sleep(3)
